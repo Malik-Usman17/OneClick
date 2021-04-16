@@ -1,5 +1,6 @@
 export const colors = {
   white: "white",
   gray: "gray",
-  colorPrimary: "#4ba0da",
+  colorPrimary: "#285FF0",
+  primaryBg: '#D9D6D6'
 }

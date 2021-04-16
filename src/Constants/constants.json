@@ -1,5 +1,13 @@
 {
   "screen": {
-      "Login": "LoginScreen"
+      "Login": "LoginScreen",
+      "SignUpScreen": "SignUpScreen",
+      "Intro": "Intro",
+      "Dashboard": "Dashboard",
+      "TabNavigation": "TabNavigation",
+      "Profile": "Profile",
+      "Share": "Share",
+      "Notification": "Notification",
+      "AppliancesRepair": "AppliancesRepair"
   }
 }
