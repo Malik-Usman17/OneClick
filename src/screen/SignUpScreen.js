@@ -12,6 +12,7 @@ import Button from '../component/Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TextField from '../component/TextField';
 import Constants from '../Constants/constants.json';
+import PickerSelector from '../component/Picker';
 
 const SignUpScreen = ({navigation}) => {
   return (
@@ -51,6 +52,18 @@ const SignUpScreen = ({navigation}) => {
               iconName="mobile-phone"
               label="Phone Number"
             />
+
+            <View>
+              <PickerSelector
+                fieldTitle="Service"
+                items={[
+                  {name: 'Salon', value: 'salon'},
+                  {name: 'Electrician', value: 'electrician'},
+                  {name: 'Plumber', value: 'plumber'},
+                  {name: 'Hairdresser', value: 'hairdresser'},
+                ]}
+              />
+            </View>
           </View>
 
           <View style={styles.buttonView}>
