@@ -8,6 +8,7 @@
       "Profile": "Profile",
       "Share": "Share",
       "Notification": "Notification",
-      "AppliancesRepair": "AppliancesRepair"
+      "AppliancesRepair": "AppliancesRepair",
+      "AppNavigationStack": "AppNavigationStack"
   }
 }

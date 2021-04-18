@@ -8,35 +8,24 @@ import Intro from '../screen/Intro';
 import Dashboard from '../screen/Dashboard';
 import TabNavigation from './TabNavigation';
 import AppliancesRepair from '../screen/AppliancesRepair';
-import AppNavigationStack from './AppNavigationStack';
 
 const {Screen, Navigator} = createStackNavigator();
 
-function UnAuthorizedStack() {
+function AppNavigationStack() {
   return (
-    <Navigator initialRouteName={Constants.screen.Intro}>
+    <Navigator initialRouteName={Constants.screen.Dashboard}>
       <Screen
-        name={Constants.screen.Login}
-        component={LoginScreen}
+        name={Constants.screen.Dashboard}
+        component={Dashboard}
         options={{headerShown: false}}
       />
       <Screen
-        name={Constants.screen.SignUpScreen}
-        component={SignUpScreen}
-        options={{headerShown: false}}
-      />
-      <Screen
-        name={Constants.screen.Intro}
-        component={Intro}
-        options={{headerShown: false}}
-      />
-      <Screen
-        name={Constants.screen.TabNavigation}
-        component={TabNavigation}
+        name={Constants.screen.AppliancesRepair}
+        component={AppliancesRepair}
         options={{headerShown: false}}
       />
     </Navigator>
   );
 }
 
-export default UnAuthorizedStack;
+export default AppNavigationStack;
