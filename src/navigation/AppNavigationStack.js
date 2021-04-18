@@ -8,6 +8,7 @@ import Intro from '../screen/Intro';
 import Dashboard from '../screen/Dashboard';
 import TabNavigation from './TabNavigation';
 import AppliancesRepair from '../screen/AppliancesRepair';
+import LogoutButton from '../component/LogoutButton';
 
 const {Screen, Navigator} = createStackNavigator();
 
@@ -17,12 +18,18 @@ function AppNavigationStack() {
       <Screen
         name={Constants.screen.Dashboard}
         component={Dashboard}
-        options={{headerShown: false}}
+        options={{
+          title: 'Home',
+          headerRight: () => <LogoutButton />,
+        }}
       />
       <Screen
         name={Constants.screen.AppliancesRepair}
         component={AppliancesRepair}
-        options={{headerShown: false}}
+        options={{
+          title: 'Service',
+          headerRight: () => <LogoutButton />,
+        }}
       />
     </Navigator>
   );
