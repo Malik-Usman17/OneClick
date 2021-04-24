@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {colors} from '../Constants/colors';
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import CategoryCard from '../component/CategoryCard';
+import SearchField from '../component/SearchField';
+import { colors } from '../Constants/colors';
 
 const AppliancesRepair = () => {
   return(
     <View style={styles.container}>
 
-      {/* <ScrollView> */}
+      <SearchField label='Search Services'/>
 
       <ScrollView style={styles.categoryContainer}>
         <CategoryCard
@@ -59,8 +60,23 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBg
   },
   categoryContainer:{
-    marginTop: 100,
+    marginTop: 15,
     backgroundColor: colors.white
+  },
+  searchView:{
+    backgroundColor: 'pink', 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between',
+    borderRadius: 15,
+    width: Dimensions.get('window').width * 0.8,
+    //padding: 10
+  },
+  inputField:{
+    paddingLeft: 18
+  },
+  icon:{
+    paddingRight: 10
   }
 });
 

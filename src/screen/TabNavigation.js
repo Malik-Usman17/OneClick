@@ -20,28 +20,28 @@ const TabNavigation = () => {
 
   const Tab = createBottomTabNavigator();
 
-  const routes = [
-    { key: "Dashboard", index: 0, icon: "home", screen: Constants.screen.AppliancesRepair},
-    // { key: "Search", index: 1, icon: "account-search", screen: Constants.appScreen.Search },
-    // { key: "Profile", index: 2, icon: "account", screen: Constants.appScreen.Profile },
-    // { key: "News", index: 3, icon: "newspaper", screen: Constants.appScreen.News },
-]
+//   const routes = [
+//     { key: "Dashboard", index: 0, icon: "home", screen: Constants.screen.AppliancesRepair},
+//     // { key: "Search", index: 1, icon: "account-search", screen: Constants.appScreen.Search },
+//     // { key: "Profile", index: 2, icon: "account", screen: Constants.appScreen.Profile },
+//     // { key: "News", index: 3, icon: "newspaper", screen: Constants.appScreen.News },
+// ]
 
-function CustomTabBar({ navigation }) {
-  return <View style={styles.tabBarContainerStyle}>
-      {
-          routes.map((route, index) => {
-              return <TouchableOpacity
-                  onPress={() => { navigation.navigate(route.screen) }}
-                  key={route.key}
-                  style={styles.tabBarStyle}>
-                  <Icon name={route.icon} type="MaterialCommunityIcons" />
-                  <Text>{route.key}</Text>
-              </TouchableOpacity>;
-          })
-      }
-  </View >
-}
+// function CustomTabBar({ navigation }) {
+//   return <View style={styles.tabBarContainerStyle}>
+//       {
+//           routes.map((route, index) => {
+//               return <TouchableOpacity
+//                   onPress={() => { navigation.navigate(route.screen) }}
+//                   key={route.key}
+//                   style={styles.tabBarStyle}>
+//                   <Icon name={route.icon} type="MaterialCommunityIcons" />
+//                   <Text>{route.key}</Text>
+//               </TouchableOpacity>;
+//           })
+//       }
+//   </View >
+// }
 
   return(
     <Tab.Navigator 

@@ -8,6 +8,11 @@
       "Profile": "Profile",
       "Share": "Share",
       "Notification": "Notification",
-      "AppliancesRepair": "AppliancesRepair"
+      "AppliancesRepair": "AppliancesRepair",
+      "HomeCleaning": "HomeCleaning",
+      "EventsWedding": "EventsWedding",
+      "HealthFitness": "HealthFitness",
+      "BeautyServices": "BeautyServices",
+      "VehicleServices": "VehicleServices"
   }
 }
