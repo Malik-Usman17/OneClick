@@ -9,10 +9,6 @@
       "Share": "Share",
       "Notification": "Notification",
       "AppliancesRepair": "AppliancesRepair",
-      "HomeCleaning": "HomeCleaning",
-      "EventsWedding": "EventsWedding",
-      "HealthFitness": "HealthFitness",
-      "BeautyServices": "BeautyServices",
-      "VehicleServices": "VehicleServices"
+      "AppNavigationStack": "AppNavigationStack"
   }
 }
