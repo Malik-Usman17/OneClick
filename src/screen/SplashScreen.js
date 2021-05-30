@@ -6,14 +6,6 @@ import { useTheme } from '@react-navigation/native';
 
 const SplashScreen = ({navigation}) => {
 
- // const appTheme = useTheme();
-  //const {colors} = useTheme()
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigation.push(Constants.screen.Intro);
-  //   }, 1000)
-  // },[])
 
   return(
     <View style={styles.container}>
@@ -28,10 +20,6 @@ const SplashScreen = ({navigation}) => {
         <Text style={styles.motto}>Pakistan's no.01 on Demand</Text>
         <Text style={styles.motto}>Service at you door step</Text>
       </View>
-{/* 
-      <TouchableOpacity>
-        <Text>Dark Mode</Text>
-      </TouchableOpacity> */}
 
     </View>
   )

@@ -21,6 +21,8 @@
       "Leads": "Leads",
       "LeadRequirement": "LeadRequirement",
       "Quotes": "Quotes",
-      "CurrentTask": "CurrentTask"
+      "CurrentTask": "CurrentTask",
+      "ServiceProviderLocation": "ServiceProviderLocation",
+      "UserServiceRequest": "UserServiceRequest"
   }
 }
