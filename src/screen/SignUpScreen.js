@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,8 +14,28 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import TextField from '../component/TextField';
 import Constants from '../Constants/constants.json';
 import PickerSelector from '../component/Picker';
+import {useDispatch} from 'react-redux';
+import {signUpAction} from '../redux/actions/signUpAction';
 
 const SignUpScreen = ({navigation}) => {
+
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const dispatch = useDispatch();
+
+  function userSignUp() {
+      const userInfo = {
+        Name: userName, 
+        password: password, 
+        phone: phone,
+        type: 'user'
+      }
+      dispatch(signUpAction(userInfo));
+      navigation.push(Constants.screen.Login);
+  } 
+
   return (
     <ScrollView style={styles.container}>
       <ImageBackground
@@ -38,20 +58,30 @@ const SignUpScreen = ({navigation}) => {
               fieldTitle="Username"
               iconName="user-o"
               label="Username"
+              value={userName}
+              onChangeText={(val) => setUserName(val)}
             />
 
-            <TextField
+            {/* <TextField
               fieldTitle="Email Address"
               iconName="id-card"
               label="Email Address"
-            />
+            /> */}
 
-            <TextField fieldTitle="Password" iconName="lock" label="Password" />
+            <TextField 
+              fieldTitle="Password" 
+              iconName="lock" 
+              label="Password" 
+              value={password}
+              onChangeText={(val) => setPassword(val)}
+            />
 
             <TextField
               fieldTitle="Phone Number"
               iconName="mobile-phone"
               label="Phone Number"
+              value={phone}
+              onChangeText={(val) => setPhone(val)}
             />
 
             <View>
@@ -73,7 +103,7 @@ const SignUpScreen = ({navigation}) => {
               style={styles.button}
               iconName="login-variant"
               iconStyle={{marginLeft: 7}}
-              onPress={() => navigation.push(Constants.screen.TabNavigation)}
+              onPress={() => userSignUp()}
             />
           </View>
         </View>

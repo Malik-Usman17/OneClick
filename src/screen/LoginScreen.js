@@ -8,8 +8,12 @@ import Button from '../component/Button';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import TextField from '../component/TextField';
 import Constants from '../Constants/constants.json';
+import {useDispatch, useSelector} from 'react-redux';
 
 const LoginScreen = ({navigation}) => {
+
+  const userDetails = useSelector((state) => state.SignUpReducer);
+  console.log(userDetails);
   const [passwordHidden, hidePassword] = useState(false);
   const [password, setPassword] = useState('');
   

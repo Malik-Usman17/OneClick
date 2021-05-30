@@ -36,11 +36,6 @@ const Intro = ({navigation}) => {
         />
       </View>
 
-      {/* <View style={styles.mottoView}>
-        <Text style={styles.motto}>Pakistan's no.01 on Demand</Text>
-        <Text style={styles.motto}>Service at you door step</Text>
-      </View> */}
-
       <View style={styles.userSectionView}>
         <Text style={styles.labelText}>Sign in with existing account</Text>
 
@@ -57,7 +52,7 @@ const Intro = ({navigation}) => {
           title="Customer"
           style={styles.button}
           buttonTextStyle={{fontSize: 18}}
-          onPress={() => navigation.push(Constants.screen.Login)}
+          onPress={() => navigation.push(Constants.screen.SignUpScreen)}
         />
 
         <Button 
@@ -67,34 +62,6 @@ const Intro = ({navigation}) => {
           onPress={() => navigation.push(Constants.screen.Login)}
         />
 
-        {/* <View style={styles.buttonsView}>
-          <Button
-            title="Sign In"
-            style={styles.button}
-            buttonTextStyle={{fontSize: 18}}
-            onPress={() => navigation.push(Constants.screen.Login)}
-          />
-        </View>
-
-        <View style={{height: 25}} />
-
-        <Text style={styles.labelText}>Sign up As</Text>
-
-        <View style={styles.buttonsView}>
-          <Button
-            title="Customer"
-            style={{...styles.button, backgroundColor: colors.white}}
-            buttonTextStyle={{color: 'black', fontSize: 18}}
-            onPress={() => navigation.push(Constants.screen.SignUpScreen)}
-          />
-
-          <Button
-            title="Service Provider"
-            style={styles.button}
-            buttonTextStyle={{fontSize: 18}}
-            onPress={() => navigation.push(Constants.screen.SignUpScreen)}
-          />
-        </View> */}
       </View>
     </ScrollView>
   );

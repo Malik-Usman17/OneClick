@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 function LogoutButton({style, onPress = () => {}}) {
   return (
     <TouchableOpacity style={[styles.buttonStyle, style]} onPress={onPress}>
-      <Ionicons name="log-out-outline" size={25} />
+      <Ionicons name="log-out-outline" size={30} color={colors.white}/>
     </TouchableOpacity>
   );
 }
