@@ -17,7 +17,10 @@ import Constants from '../Constants/constants.json';
 const Intro = ({navigation}) => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={true}>
-      <Image source={require('../../assets/testing.png')} style={styles.logo} />
+    
+    <View style={{marginTop:12, marginLeft: 6}}> 
+      <Image source={require('../../assets/logo.png')} style={styles.logo} />
+    </View>
 
       <View style={{alignItems: 'center'}}>
         <Text style={{...styles.headingText, color: 'black'}}>OneClick</Text>
@@ -28,20 +31,43 @@ const Intro = ({navigation}) => {
 
       <View style={styles.imageView}>
         <Image
-          source={require('../../assets/Splashscr.png')}
+          source={require('../../assets/SplashTester.png')}
           style={styles.image}
         />
       </View>
 
-      <View style={styles.mottoView}>
+      {/* <View style={styles.mottoView}>
         <Text style={styles.motto}>Pakistan's no.01 on Demand</Text>
         <Text style={styles.motto}>Service at you door step</Text>
-      </View>
+      </View> */}
 
       <View style={styles.userSectionView}>
         <Text style={styles.labelText}>Sign in with existing account</Text>
 
-        <View style={styles.buttonsView}>
+        <Button 
+          title="Sign In"
+          style={styles.button}
+          buttonTextStyle={{fontSize: 18}}
+          onPress={() => navigation.push(Constants.screen.Login)}
+        />
+
+        <Text style={{...styles.labelText, marginTop: 25}}>Sign up As</Text>
+
+        <Button 
+          title="Customer"
+          style={styles.button}
+          buttonTextStyle={{fontSize: 18}}
+          onPress={() => navigation.push(Constants.screen.Login)}
+        />
+
+        <Button 
+          title="Service Provider"
+          style={styles.button}
+          buttonTextStyle={{fontSize: 18}}
+          onPress={() => navigation.push(Constants.screen.Login)}
+        />
+
+        {/* <View style={styles.buttonsView}>
           <Button
             title="Sign In"
             style={styles.button}
@@ -68,7 +94,7 @@ const Intro = ({navigation}) => {
             buttonTextStyle={{fontSize: 18}}
             onPress={() => navigation.push(Constants.screen.SignUpScreen)}
           />
-        </View>
+        </View> */}
       </View>
     </ScrollView>
   );
@@ -80,10 +106,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBg,
   },
   logo: {
-    marginTop: 20,
-    backgroundColor: 'green',
-    width: 130,
-    height: 150,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
   },
   headingText: {
@@ -93,19 +117,15 @@ const styles = StyleSheet.create({
   },
   imageView: {
     // backgroundColor: colors.primaryBg,
-    backgroundColor: 'blue',
+    //backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
     // flex: 0.4
   },
   image: {
-    // flex: 1,
-    width: '100%',
-    // width: Dimensions.get('screen').width * 0.95,
-    height: Dimensions.get('screen').height * 0.48,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('window').height * 0.42,
     resizeMode: 'contain',
-    //tintColor: 'green'
-    backgroundColor: 'pink',
   },
   mottoView: {
     alignItems: 'center',
@@ -116,9 +136,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: Dimensions.get('window').height * 0.055,
-    width: Dimensions.get('window').width * 0.3,
+    width: Dimensions.get('window').width * 0.5,
     borderRadius: 7,
     elevation: 1,
+    marginTop: 12
   },
   buttonsView: {
     flexDirection: 'row',
@@ -128,15 +149,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   labelText: {
+    //marginTop: 10,
     fontSize: 18,
     textAlign: 'center',
     fontWeight: 'bold',
   },
   userSectionView: {
-    backgroundColor: '#f2f2f2',
+    //backgroundColor: '#f2f2f2',
     margin: 15,
     borderRadius: 7,
-    paddingVertical: 10,
+    //paddingVertical: 10,
+    alignItems: 'center'
   },
 });
 

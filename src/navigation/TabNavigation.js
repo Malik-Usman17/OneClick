@@ -16,6 +16,7 @@ import {colors} from '../Constants/colors';
 import AppliancesRepair from '../screen/AppliancesRepair';
 import {Icon} from 'native-base';
 import AppNavigationStack from './AppNavigationStack';
+import LogoutButton from '../component/LogoutButton';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -79,6 +80,8 @@ const TabNavigation = () => {
           tabBarIcon: ({color}) => (
             <Feather name="user" color={color} size={26} />
           ),
+          // title: 'Profile',
+          // headerRight: () => <LogoutButton />
         }}
       />
 

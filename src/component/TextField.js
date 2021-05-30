@@ -44,9 +44,10 @@ const styles= StyleSheet.create({
   },
   line:{
     height: Dimensions.get('window').height * 0.002,
-    width: Dimensions.get('window').width - 140,
+    width: Dimensions.get('window').width - 155,
     backgroundColor: 'black',
-    marginHorizontal: 10
+    marginLeft: 10
+    
   },
   infoTitle:{
     fontSize: 13,

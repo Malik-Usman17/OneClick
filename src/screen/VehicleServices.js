@@ -13,37 +13,37 @@ const VehicleServices = () =>{
       <ScrollView style={styles.categoryContainer}>
 
         <CategoryCard 
-          imageSource={require('../../assets/Florist.jpg')}
+          imageSource={require('../../assets/EngineOil.jpg')}
           title='Engine Oil Change And Filter Replacement'
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/Caterer.jpg')}
+          imageSource={require('../../assets/checkingLights.jpg')}
           title='Checking Lights, Tyres'
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/bridalDress.png')}
+          imageSource={require('../../assets/hydraulicFluid.jpg')}
           title='Checking Hydraulic Fluid And Coolant Levels'
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/Lighting.jpg')}
+          imageSource={require('../../assets/checkCooling.jpg')}
           title='Checking The Cooling System'
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/reception.jpg')}
+          imageSource={require('../../assets/engineTuning.jpg')}
           title='Engine Tuning'
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/venue.jpg')}
+          imageSource={require('../../assets/suspensionCheck.jpg')}
           title='Suspension Checks'
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/venue.jpg')}
+          imageSource={require('../../assets/carWash.jpg')}
           title='Car And Bike Wash'
         />
 

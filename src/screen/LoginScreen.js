@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Dimensions, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Dimensions, TextInput, TouchableOpacity, ImageBackground, Image} from 'react-native';
 import {colors} from '../Constants/colors';
 import Eyeicon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,11 +21,17 @@ const LoginScreen = ({navigation}) => {
         source={require('../../assets/login.png')}
       >
 
+        <View style={{alignItems: 'center', marginTop: 50}}>
+          <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        </View>
+
+        
+
         <View style={styles.heading}>
           <Text style={styles.headingText}>Login</Text>
         </View>
 
-        <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 25}}>
+        <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 12}}>
 
           <View style={styles.infoInnerContainer}>
 
@@ -64,12 +70,13 @@ const LoginScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   heading:{
-    // backgroundColor: 'green',
-    alignItems: 'center',
-    marginTop: 120
+    //backgroundColor: 'green',
+    //alignItems: 'center',
+    marginTop: 20
   },
   headingText:{
-    fontSize: 25,
+    paddingLeft: 55,
+    fontSize: 30,
     fontWeight: 'bold',
     color: colors.white
   },
@@ -93,6 +100,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     //padding: 5
     //flexDirection: 'row'
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
   },
 //   scroll:{
 //     backgroundColor: 'pink',

@@ -1,5 +1,6 @@
 {
   "screen": {
+      "SplashScreen": "SplashScreen",
       "Login": "LoginScreen",
       "SignUpScreen": "SignUpScreen",
       "Intro": "Intro",
@@ -9,6 +10,17 @@
       "Share": "Share",
       "Notification": "Notification",
       "AppliancesRepair": "AppliancesRepair",
-      "AppNavigationStack": "AppNavigationStack"
+      "AppNavigationStack": "AppNavigationStack",
+      "VehicleServices": "VehicleServices",
+      "HomeCleaning": "HomeCleaning",
+      "EventsWedding": "EventsWedding",
+      "HealthFitness": "HealthFitness",
+      "BeautyServices": "BeautyServices",
+      "SPProfile": "SPProfile",
+      "ChooseServices": "ChooseServices",
+      "Leads": "Leads",
+      "LeadRequirement": "LeadRequirement",
+      "Quotes": "Quotes",
+      "CurrentTask": "CurrentTask"
   }
 }

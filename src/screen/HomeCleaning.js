@@ -38,7 +38,7 @@ const HomeCleaning = () =>{
         />
 
         <CategoryCard 
-          imageSource={require('../../assets/Kitchen.jpg')}
+          imageSource={require('../../assets/Blind.jpg')}
           title='Blinds and Shutters'
         />
 

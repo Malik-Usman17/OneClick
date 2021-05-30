@@ -58,9 +58,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 110,
+    marginTop: 10,
     paddingHorizontal: 12,
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10
   },
 })
 

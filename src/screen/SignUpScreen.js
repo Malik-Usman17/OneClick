@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   Dimensions,
+  ScrollView
 } from 'react-native';
 import {colors} from '../Constants/colors';
 import Button from '../component/Button';
@@ -16,7 +17,7 @@ import PickerSelector from '../component/Picker';
 
 const SignUpScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <ImageBackground
         source={require('../../assets/loginBg.png')}
         style={styles.bgImage}>
@@ -77,13 +78,14 @@ const SignUpScreen = ({navigation}) => {
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //padding: 5
   },
   bgImage: {
     flex: 1,
@@ -114,11 +116,9 @@ const styles = StyleSheet.create({
   },
   button: {
     height: Dimensions.get('window').height * 0.07,
-    width: Dimensions.get('window').width - 270,
+    width: Dimensions.get('window').width * 0.35,
     borderRadius: 22,
     flexDirection: 'row',
-    //marginHorizontal: 10
-    //justifyContent: 'space-evenly'
   },
 });
 
