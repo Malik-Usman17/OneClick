@@ -12,8 +12,9 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const LoginScreen = ({navigation}) => {
 
-  const userDetails = useSelector((state) => state.SignUpReducer);
+  const userDetails = useSelector((state) => state.SignUpReducer.users);
   console.log(userDetails);
+
   const [passwordHidden, hidePassword] = useState(false);
   const [password, setPassword] = useState('');
   

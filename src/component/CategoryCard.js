@@ -1,13 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {colors} from '../Constants/colors';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { colors } from '../Constants/colors';
 
 
-const CategoryCard = ({imageSource, title}) => {
+const CategoryCard = ({imageSource, title, onPress}) => {
   return(
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={onPress}>
         
-        <Image 
+        <Image
           source={imageSource}
           style={styles.image}
         />
@@ -29,10 +29,8 @@ const styles = StyleSheet.create({
     width: 100,
     height: 125,
     resizeMode: 'contain',
-    //backgroundColor: 'pink'
   },
   title:{
-    //backgroundColor: 'green',
     paddingHorizontal: 3,
     width: '65%',
     textAlign: 'center',

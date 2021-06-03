@@ -1,16 +1,67 @@
-import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
 import { colors } from '../Constants/colors';
 import SearchField from '../component/SearchField';
 import CategoryCard from '../component/CategoryCard';
 
 const HomeCleaning = () =>{
+
+  const [search, setSearch] = useState('');
+
+  const homeServices = [
+    {service: 'Dusting and Sweeping', image: require('../../assets/Dusting.jpg')},
+    {service: 'Vaccuming', image: require('../../assets/Vaccuming.png')},
+    {service: 'Mopping', image: require('../../assets/Mopping.png')},
+    {service: 'Frdige Cleaning', image: require('../../assets/Fridge.jpg')},
+    {service: 'Kitchen Appliances', image: require('../../assets/Kitchen.jpg')},
+    {service: 'Blinds and Shutters', image: require('../../assets/Blind.jpg')},
+    {service: 'Deep Cleaning', image: require('../../assets/DeepCleaning.png')}
+  ]
+
+  
+  var home = homeServices;
+
+  if(search != ''){
+    home = homeServices.filter((val) => val.service.toLowerCase().includes(search.toLowerCase()))
+  }
+
+
+  const services = ({item}) => {
+
+    return(
+      <View>
+        
+        <CategoryCard
+          imageSource={item.image}
+          title={item.service}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+        />
+        
+      </View>
+    )
+  }
+
+
   return(
     <View style={styles.container}>
       
-      <SearchField label='Search Services'/>
+      <SearchField 
+        label='Search Services'
+        value={search}
+        onChangeText={setSearch}
+      />
 
-      <ScrollView style={styles.categoryContainer}>
+      <View style={{ marginTop: 10, marginBottom: 50 }}>
+
+        <FlatList
+          data={home}
+          renderItem={services}
+          keyExtractor={(item, index) => index.toString()}
+        />
+
+      </View>
+
+      {/* <ScrollView style={styles.categoryContainer}>
 
         <CategoryCard 
           imageSource={require('../../assets/Dusting.jpg')}
@@ -47,7 +98,7 @@ const HomeCleaning = () =>{
           title='Deep Cleaning'
         />
 
-      </ScrollView>
+      </ScrollView> */}
     </View>
   )
 }

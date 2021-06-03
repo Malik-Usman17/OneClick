@@ -1,7 +1,7 @@
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, FlatList, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Constants from '../Constants/constants.json';
 
 import { colors } from '../Constants/colors'
 
@@ -51,7 +51,7 @@ const timeSlots = [
 ]
 
 
-const UserServiceRequest = () => {
+const UserServiceRequest = ({navigation}) => {
 
     const [activeDate, setActiveDate] = useState(null);
     const [activeTime, setActiveTime] = useState(null);
@@ -86,11 +86,16 @@ const UserServiceRequest = () => {
                         <View style={styles.blueUnderline} />
                     </View>
                     <View style={{ marginTop: 10 }}>
-                        <FlatList horizontal data={daysOfMonth} renderItem={({ item, index }) =>
+                        <FlatList 
+                          horizontal 
+                          data={daysOfMonth} 
+                          renderItem={({ item, index }) =>
                             <TouchableOpacity key={index} style={{ ...styles.dateTile, backgroundColor: index === activeDate ? colors.secondaryColor : '#fff', borderColor: index === activeDate ? colors.secondaryColor : colors.primaryBg }} onPress={() => selectDate(index)}>
                                 <Text style={{ ...styles.dayOfWeek, color: index === activeDate ? '#fff' : '#707070' }}>{item.day}</Text>
                                 <Text style={{ ...styles.dateNum, color: index === activeDate ? '#fff' : '#000' }}>{item.date}</Text>
-                            </TouchableOpacity>} />
+                            </TouchableOpacity>}
+                          keyExtractor={(item, index) => index.toString()} 
+                        />
                     </View>
                 </View>
                 <View style={styles.containerView}>
@@ -99,14 +104,25 @@ const UserServiceRequest = () => {
                         <View style={styles.blueUnderline} />
                     </View>
                     <View style={{ marginTop: 10 }}>
-                        <FlatList keyExtractor={(item, index) => index.toString()} horizontal data={timeSlots} renderItem={({ item, index }) =>
-                            <TouchableOpacity key={index} style={{ ...styles.dateTile, height: 50, width: 120, backgroundColor: index === activeTime ? colors.secondaryColor : '#fff', borderColor: index === activeTime ? colors.secondaryColor : colors.primaryBg }} onPress={() => selectTime(index)}>
+                        <FlatList 
+                          keyExtractor={(item, index) => index.toString()} 
+                          horizontal 
+                          data={timeSlots} 
+                          renderItem={({ item, index }) =>
+                            <TouchableOpacity 
+                              key={index} 
+                              style={{ ...styles.dateTile, height: 50, width: 120, backgroundColor: index === activeTime ? colors.secondaryColor : '#fff', borderColor: index === activeTime ? colors.secondaryColor : colors.primaryBg }} 
+                              onPress={() => selectTime(index)}
+                            >
                                 <Text style={{ ...styles.dayOfWeek, color: index === activeTime ? '#fff' : '#707070' }}>{item.time}</Text>
-                            </TouchableOpacity>} />
+                            </TouchableOpacity>} 
+                        />
                     </View>
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.saveButton}>
+                    <TouchableOpacity 
+                      style={styles.saveButton}
+                    >
                         <Text style={styles.saveButtonText}>Save</Text>
                     </TouchableOpacity>
                 </View>
@@ -139,7 +155,8 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     textinputLabel: {
-        color: '#707070',
+        color: colors.colorPrimary,
+        //color: '#707070',
         marginLeft: 10
     },
     textInput: {

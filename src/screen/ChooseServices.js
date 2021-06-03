@@ -30,25 +30,20 @@ const ChooseServices = () => {
     }
 
     return(
-
-      
-
-        <View
-          style={styles.container}
-        >
+        <View style={styles.container}>
 
             <View style={styles.serachContainer}>
                 <Feather name='search' size={25} color='gray' />
-                 <TextInput
-                   placeholder='Search for Business Category'
-                   style={{ marginLeft: 15 }}
+                <TextInput
+                    placeholder='Search for Business Category'
+                    style={{ marginLeft: 15 }}
                 />
             </View>
 
-            <FlatList 
-              data={categories}
-              renderItem={itemList}
-              keyExtractor={(item, index) => index.toString()}
+            <FlatList
+                data={categories}
+                renderItem={itemList}
+                keyExtractor={(item, index) => index.toString()}
             />
 
         </View>
