@@ -1,63 +1,73 @@
-import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
-import { colors } from '../Constants/colors';
-import SearchField from '../component/SearchField';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
 import CategoryCard from '../component/CategoryCard';
+import SearchField from '../component/SearchField';
+import { colors } from '../Constants/colors';
 
-const VehicleServices = () =>{
-  return(
+const VehicleServices = () => {
+
+  const [search, setSearch] = useState('');
+
+  const services = [
+    { service: 'Engine Oil Change And Filter Replacement', image: require('../../assets/EngineOil.jpg') },
+    { service: 'Checking Lights, Tyres', image: require('../../assets/checkingLights.jpg') },
+    { service: 'Checking Hydraulic Fluid And Coolant Levels', image: require('../../assets/hydraulicFluid.jpg') },
+    { service: 'Checking The Cooling System', image: require('../../assets/checkCooling.jpg') },
+    { service: 'Engine Tuning', image: require('../../assets/engineTuning.jpg') },
+    { service: 'Suspension Checks', image: require('../../assets/suspensionCheck.jpg')},
+    { service: 'Car And Bike Wash', image: require('../../assets/carWash.jpg') }
+  ]
+
+  var vehicle = services;
+
+  if (search != '') {
+    vehicle = services.filter((val) => val.service.toLowerCase().includes(search.toLowerCase()))
+  }
+
+  const serviceList = ({ item }) => {
+
+    return (
+      <View>
+
+        <CategoryCard
+          imageSource={item.image}
+          title={item.service}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+        />
+
+      </View>
+    )
+  }
+
+  return (
     <View style={styles.container}>
-      
-      <SearchField label='Search Services'/>
 
-      <ScrollView style={styles.categoryContainer}>
+      <SearchField
+        label='Search Services'
+        value={search}
+        onChangeText={(val) => setSearch(val)}
+      />
 
-        <CategoryCard 
-          imageSource={require('../../assets/EngineOil.jpg')}
-          title='Engine Oil Change And Filter Replacement'
+      <View style={{ marginTop: 10, marginBottom: 50 }}>
+
+        <FlatList
+          data={vehicle}
+          renderItem={serviceList}
+          keyExtractor={(item, index) => index.toString()}
         />
 
-        <CategoryCard 
-          imageSource={require('../../assets/checkingLights.jpg')}
-          title='Checking Lights, Tyres'
-        />
+      </View>
 
-        <CategoryCard 
-          imageSource={require('../../assets/hydraulicFluid.jpg')}
-          title='Checking Hydraulic Fluid And Coolant Levels'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/checkCooling.jpg')}
-          title='Checking The Cooling System'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/engineTuning.jpg')}
-          title='Engine Tuning'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/suspensionCheck.jpg')}
-          title='Suspension Checks'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/carWash.jpg')}
-          title='Car And Bike Wash'
-        />
-
-      </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: colors.primaryBg
   },
-  categoryContainer:{
+  categoryContainer: {
     marginTop: 15,
     backgroundColor: colors.white
   },

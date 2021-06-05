@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
-import {colors} from '../Constants/colors';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import Header from '../component/Header';
+import { colors } from '../Constants/colors';
 
 const Profile = () => {
   return(
+    
     <View style={{backgroundColor: colors.primaryBg, flex: 1}}>
+      <Header title='Profile'/>
       <View style={styles.infoContainer}>
         <Image source={require('../../assets/User.png')} style={styles.image}/>
         
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
-    borderColor: 'blue',
+    borderColor: colors.secondaryColor,
     borderWidth: 1
   },
   name:{
@@ -70,17 +73,13 @@ const styles = StyleSheet.create({
   },
   infoCategory:{
     flexDirection: 'row',
-    //backgroundColor: 'green',
-    // width: Dimensions.get('window').width * 0.54,
-    //justifyContent: 'space-between',
     alignItems: 'center'
   },
   categoryTitle:{
     fontSize: 16,
     fontWeight: 'bold',
-    //backgroundColor: 'blue',
     marginLeft: 80 
   }
-})
+});
 
 export default Profile;

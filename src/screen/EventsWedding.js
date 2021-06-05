@@ -1,48 +1,62 @@
-import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
 import { colors } from '../Constants/colors';
 import SearchField from '../component/SearchField';
 import CategoryCard from '../component/CategoryCard';
 
 const EventsWedding = () =>{
+
+  const [search, setSearch] = useState('');
+
+  const services = [
+    {service: 'Arranging The Florist', image: require('../../assets/Florist.jpg')},
+    {service: 'Caterering', image: require('../../assets/Caterer.jpg')},
+    {service: 'Bridal And Groom Dresses', image: require('../../assets/bridalDress.png')},
+    {service: 'Lighting And Visuals', image: require('../../assets/Lighting.jpg')},
+    {service: 'Setting Up The Reception', image: require('../../assets/reception.jpg')},
+    {service: 'Select The Menu And Venue', image: require('../../assets/venue.jpg')},
+  ]
+
+  var events = services;
+
+  if(search != ''){
+    events = services.filter((val) => val.service.toLowerCase().includes(search.toLowerCase()))
+  }
+
+  const serviceList = ({item}) => {
+
+    return(
+      <View>
+        
+        <CategoryCard
+          imageSource={item.image}
+          title={item.service}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+        />
+        
+      </View>
+    )
+  }
+
   return(
     <View style={styles.container}>
       
-      <SearchField label='Search Services'/>
+      <SearchField 
+        label='Search Services'
+        value={search}
+        onChangeText={setSearch}
+      />
 
-      <ScrollView style={styles.categoryContainer}>
+      <View style={{ marginTop: 10, marginBottom: 50 }}>
 
-        <CategoryCard 
-          imageSource={require('../../assets/Florist.jpg')}
-          title='Arranging The Florist'
+        <FlatList
+          data={events}
+          renderItem={serviceList}
+          keyExtractor={(item, index) => index.toString()}
         />
 
-        <CategoryCard 
-          imageSource={require('../../assets/Caterer.jpg')}
-          title='Caterering'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/bridalDress.png')}
-          title='Bridal And Groom Dresses'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/Lighting.jpg')}
-          title='Lighting And Visuals'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/reception.jpg')}
-          title='Setting Up The Reception'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/venue.jpg')}
-          title='Select The Menu And Venue'
-        />
-
-      </ScrollView>
+      </View>
+      
     </View>
   )
 }

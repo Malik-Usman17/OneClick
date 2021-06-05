@@ -23,10 +23,11 @@ const TabNavigation = () => {
 
   return (
     <Tab.Navigator
+      screenOption={{}}
       initialRouteName={Constants.screen.AppNavigationStack}
       tabBarOptions={{
-        activeTintColor: colors.colorPrimary,
-        inactiveTintColor: 'black',
+        activeTintColor: colors.secondaryColor,
+        inactiveTintColor: colors.colorPrimary,
         labelStyle: {fontSize: 11, fontWeight: 'bold', color: 'black'},
         //tabStyle: {backgroundColor: 'green', elevation: 40}
       }}
@@ -36,6 +37,8 @@ const TabNavigation = () => {
         name={Constants.screen.AppNavigationStack}
         component={AppNavigationStack}
         options={{
+          //tabBarVisible: false,
+          //title: 'Home Screen',
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
             <Feather name="home" color={color} size={26} />
@@ -43,22 +46,17 @@ const TabNavigation = () => {
         }}
       />
 
-      {/* <Tab.screen 
-        name={Constants.screen.AppliancesRepair}
-        component={AppliancesRepair} 
-        // options={{headerShown: false}}
-      /> */}
-
       <Tab.Screen
         name={Constants.screen.Profile}
         component={Profile}
         options={{
+          //title: 'Home Screen',
           tabBarLabel: 'Profile',
           tabBarIcon: ({color}) => (
             <Feather name="user" color={color} size={26} />
           ),
           // title: 'Profile',
-          // headerRight: () => <LogoutButton />
+          //headerRight: () => <LogoutButton />
         }}
       />
 

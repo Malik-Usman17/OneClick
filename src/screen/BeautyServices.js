@@ -1,48 +1,67 @@
-import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
 import { colors } from '../Constants/colors';
 import SearchField from '../component/SearchField';
 import CategoryCard from '../component/CategoryCard';
 
 const BeautyServices = () =>{
+
+  const [search, setSearch] = useState('');
+
+  const services = [
+    {service: 'Massage', image: require('../../assets/massage.jpg')},
+    {service: 'MakeUp', image: require('../../assets/makeup.jpg')},
+    {service: 'Facial', image: require('../../assets/Facial.jpg')},
+    {service: 'Waxing', image: require('../../assets/waxing.jpg')},
+    {service: 'Nails', image: require('../../assets/nails.jpg')},
+    {service: 'Manicure Pedicure', image: require('../../assets/maniPed.jpg')}
+  ]
+
+  var servicesData = services;
+
+  if(search != ''){
+    servicesData = services.filter((val) => (
+      val.service.toLowerCase().includes(search.toLowerCase())
+    ))
+  }
+
+  const serviceList = ({item}) => {
+
+    return(
+      <View>
+        
+        <CategoryCard
+          imageSource={item.image}
+          title={item.service}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+        />
+        
+      </View>
+    )
+  }
+
+  
+
   return(
     <View style={styles.container}>
       
-      <SearchField label='Search Services'/>
+      <SearchField 
+        label='Search Services'
+        value={search}
+        onChangeText={setSearch}
+      />
 
-      <ScrollView style={styles.categoryContainer}>
+      <View style={{ marginTop: 10, marginBottom: 50 }}>
 
-        <CategoryCard 
-          imageSource={require('../../assets/Florist.jpg')}
-          title='Massage'
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={servicesData}
+          renderItem={serviceList}
+          keyExtractor={(item, index) => index.toString()}
         />
 
-        <CategoryCard 
-          imageSource={require('../../assets/Caterer.jpg')}
-          title='MakeUp'
-        />
+      </View>
 
-        <CategoryCard 
-          imageSource={require('../../assets/bridalDress.png')}
-          title='Facial'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/Lighting.jpg')}
-          title='Waxing'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/reception.jpg')}
-          title='Nails'
-        />
-
-        <CategoryCard 
-          imageSource={require('../../assets/venue.jpg')}
-          title='Manicure Pedicure'
-        />
-
-      </ScrollView>
     </View>
   )
 }

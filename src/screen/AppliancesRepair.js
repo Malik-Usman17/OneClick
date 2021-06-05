@@ -1,54 +1,67 @@
-import React from 'react';
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import React, {useState} from 'react';
+import { Dimensions, ScrollView, StyleSheet, View, FlatList} from 'react-native';
 import CategoryCard from '../component/CategoryCard';
 import SearchField from '../component/SearchField';
 import { colors } from '../Constants/colors';
+import Constants from '../Constants/constants.json';
 
-const AppliancesRepair = () => {
+const AppliancesRepair = ({navigation}) => {
+
+  const [search, setSearch] = useState('');
+
+
+  const services = [
+    {service: 'AC Services and Repair', image: require('../../assets/AcRepair.png')},
+    {service: 'Heater Repair', image: require('../../assets/HeaterRepair.png')},
+    {service: 'Laptop Repair', image: require('../../assets/LaptopRepair.png')},
+    {service: 'Microwave Repair', image: require('../../assets/MicrowaveRepair.png')},
+    {service: 'Phone Repair', image: require('../../assets/PhoneRepair.png')},
+    {service: 'Refrigerator Repair', image: require('../../assets/FridgeRepair.png')},
+    {service: 'TV Repair', image: require('../../assets/TvRepair.png')}
+  ]
+
+  var servicesData = services;
+
+  if(search != ''){
+    servicesData = services.filter((val) => (
+      val.service.toLowerCase().includes(search.toLowerCase())
+    ))
+  }
+
+
+  const serviceList = ({item}) => {
+
+    return(
+      <View>
+        
+        <CategoryCard
+          imageSource={item.image}
+          title={item.service}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+        />
+        
+      </View>
+    )
+  }
+
   return(
     <View style={styles.container}>
 
-      <SearchField label='Search Services'/>
+      <SearchField
+        label='Search Services'
+        value={search}
+        onChangeText={(val) => setSearch(val)}
+      />
 
-      <ScrollView style={styles.categoryContainer}>
-        <CategoryCard
-          imageSource={require('../../assets/AcRepair.png')}
-          title='AC Services and Repair'
+      <View style={{ marginTop: 10, marginBottom: 50 }}>
+
+        <FlatList
+          data={servicesData}
+          renderItem={serviceList}
+          keyExtractor={(item, index) => index.toString()}
         />
 
-        <CategoryCard
-          imageSource={require('../../assets/HeaterRepair.png')}
-          title='Heater Repair'
-        />
-
-        <CategoryCard
-          imageSource={require('../../assets/LaptopRepair.png')}
-          title='Laptop Repair'
-        />
-
-        <CategoryCard
-          imageSource={require('../../assets/MicrowaveRepair.png')}
-          title='Microwave Repair'
-        />
-
-        <CategoryCard
-          imageSource={require('../../assets/PhoneRepair.png')}
-          title='Phone Repair'
-        />
-
-        <CategoryCard
-          imageSource={require('../../assets/FridgeRepair.png')}
-          title='Refrigerator Repair'
-        />
-
-        <CategoryCard
-          imageSource={require('../../assets/TvRepair.png')}
-          title='TV Repair'
-        />
-
-      </ScrollView>
-
-      {/* </ScrollView> */}
+      </View>
 
     </View>
   );
@@ -57,7 +70,7 @@ const AppliancesRepair = () => {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: colors.primaryBg
+    backgroundColor: colors.primaryBg,
   },
   categoryContainer:{
     marginTop: 15,
