@@ -1,10 +1,32 @@
 import React, {useEffect} from 'react';
+import { CommonActions } from '@react-navigation/native';
 import {View, Text, Image, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import {colors} from '../Constants/colors';
 import Constants from '../Constants/constants.json';
 import { useTheme } from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import { ESLint } from 'eslint';
 
 const SplashScreen = ({navigation}) => {
+
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+  console.log('Current:',currentUser)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if(currentUser != null){
+        if(currentUser.type == 'user'){
+          navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.TabNavigation}]}));
+        }
+        else{
+          navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.SPProfile}]}));
+        }
+      }
+      else{
+        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+      }
+    }, 1000)
+}, []);
 
 
   return(

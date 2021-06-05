@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Dimensions, TextInput, TouchableOpacity, ImageBackground, Image} from 'react-native';
+import {Alert, View, Text, StyleSheet, ScrollView, Dimensions, TextInput, TouchableOpacity, ImageBackground, Image} from 'react-native';
 import {colors} from '../Constants/colors';
 import Eyeicon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,14 +9,45 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import TextField from '../component/TextField';
 import Constants from '../Constants/constants.json';
 import {useDispatch, useSelector} from 'react-redux';
+import {currentUserAction} from '../redux/actions/currentUserAction';
+import { CommonActions } from '@react-navigation/native';
 
 const LoginScreen = ({navigation}) => {
-
-  const userDetails = useSelector((state) => state.SignUpReducer.users);
-  console.log(userDetails);
+  
+  const dispatch = useDispatch();
+  const allUsers = useSelector((state) => state.SignUpReducer.users);
+  console.log(allUsers);
 
   const [passwordHidden, hidePassword] = useState(false);
   const [password, setPassword] = useState('');
+  const [user, SetUser] = useState('');
+
+  function login() {
+    const userInfo = {
+      userName: user,
+      password: password
+    }
+    const currentUser = allUsers.find(user => user.Name === userInfo.userName && user.password === userInfo.password)
+    if(currentUser !== undefined){
+      dispatch(currentUserAction(currentUser));
+      if(currentUser.type == 'user'){
+        navigation.push(Constants.screen.TabNavigation);
+      }
+      else{
+        navigation.push(Constants.screen.SPProfile);
+      }
+    }
+    else{
+      Alert.alert(
+        "Invalid Credentials",
+        "User Not Found :(",
+        [
+          {text: 'Close'}
+        ]
+      );
+
+    }
+  }
   
   return(
     <View style={{flex: 1}}>
@@ -41,15 +72,19 @@ const LoginScreen = ({navigation}) => {
           <View style={styles.infoInnerContainer}>
 
             <TextField 
-              fieldTitle='Email Address'
-              label='Email Address'
+              fieldTitle='User Name'
+              label='User Name'
               iconName='user-o'
+              value={user}
+              onChangeText={SetUser}
             />
 
             <TextField 
               fieldTitle='Password'
               label='Password'
               iconName='lock'
+              value={password}
+              onChangeText={setPassword}
             />
 
           </View>
@@ -61,7 +96,20 @@ const LoginScreen = ({navigation}) => {
               style={styles.button}
               iconName='login-variant'
               iconStyle={{marginLeft: 7}}
-              onPress={() => navigation.push(Constants.screen.TabNavigation)}
+              onPress={() => {
+                if(user != '' && password != ''){
+                  login();
+                }
+                else{
+                  Alert.alert(
+                    "Fields Empty",
+                    "Please fill out all the fields",
+                    [
+                      {text: 'Close'}
+                    ]
+                  );
+                }
+              }}
             />
 
           </View>

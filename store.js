@@ -1,5 +1,6 @@
 import {createStore, combineReducers} from 'redux';
 import {SignUpReducer} from './src/redux/reducers/SignupReducer';
+import {currentUser} from './src/redux/reducers/currentUser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer, persistStore} from 'redux-persist';
  
@@ -11,7 +12,8 @@ const persistConfig = {
 
 
 const reducers = combineReducers({
-    SignUpReducer
+    SignUpReducer,
+    currentUser
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
