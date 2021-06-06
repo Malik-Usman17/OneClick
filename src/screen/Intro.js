@@ -52,14 +52,14 @@ const Intro = ({navigation}) => {
           title="Customer"
           style={styles.button}
           buttonTextStyle={{fontSize: 18}}
-          onPress={() => navigation.push(Constants.screen.SignUpScreen)}
+          onPress={() => navigation.push(Constants.screen.SignUpScreen, {type: 'user'})}
         />
 
         <Button 
           title="Service Provider"
           style={styles.button}
           buttonTextStyle={{fontSize: 18}}
-          onPress={() => navigation.push(Constants.screen.Login)}
+          onPress={() => navigation.push(Constants.screen.SignUpScreen , {type: 'provider'})}
         />
 
       </View>

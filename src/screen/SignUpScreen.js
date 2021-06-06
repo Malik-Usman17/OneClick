@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TextInput,
   Dimensions,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
 import {colors} from '../Constants/colors';
 import Button from '../component/Button';
@@ -17,7 +18,10 @@ import PickerSelector from '../component/Picker';
 import {useDispatch} from 'react-redux';
 import {signUpAction} from '../redux/actions/signUpAction';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({navigation, route}) => {
+
+  const {type} = route.params;
+  console.log('Value:',type)
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -30,17 +34,18 @@ const SignUpScreen = ({navigation}) => {
         Name: userName, 
         password: password, 
         phone: phone,
-        type: 'user'
+        type: type
       }
       dispatch(signUpAction(userInfo));
       navigation.push(Constants.screen.Login);
   } 
 
   return (
-    <ScrollView style={styles.container}>
+    // <ScrollView style={styles.container}>
       <ImageBackground
         source={require('../../assets/loginBg.png')}
         style={styles.bgImage}>
+          <ScrollView>
         <View style={styles.heading}>
           <Text style={styles.headingText}>OneClick</Text>
           <Text style={styles.headingText}>Services</Text>
@@ -77,6 +82,7 @@ const SignUpScreen = ({navigation}) => {
             />
 
             <TextField
+              keyboardType='phone-pad'
               fieldTitle="Phone Number"
               iconName="mobile-phone"
               label="Phone Number"
@@ -84,7 +90,7 @@ const SignUpScreen = ({navigation}) => {
               onChangeText={(val) => setPhone(val)}
             />
 
-            <View>
+            {/* <View>
               <PickerSelector
                 fieldTitle="Service"
                 items={[
@@ -94,7 +100,7 @@ const SignUpScreen = ({navigation}) => {
                   {name: 'Hairdresser', value: 'hairdresser'},
                 ]}
               />
-            </View>
+            </View> */}
           </View>
 
           <View style={styles.buttonView}>
@@ -103,12 +109,32 @@ const SignUpScreen = ({navigation}) => {
               style={styles.button}
               iconName="login-variant"
               iconStyle={{marginLeft: 7}}
-              onPress={() => userSignUp()}
+              onPress={() => {
+                if(userName != '' && password != '' && phone != ''){
+                  userSignUp();
+                  setUserName('');
+                setPassword('');
+                setPhone('');
+                }
+                else{
+                  Alert.alert(
+                    "Fields Empty",
+                    "Please fill out all the fields",
+                    [
+                      {text: 'Close'}
+                    ]
+                  );
+                  //alert('Please Fill Out All The Fields');
+                }
+                
+                
+              }}
             />
           </View>
         </View>
+        </ScrollView>
       </ImageBackground>
-    </ScrollView>
+    // </ScrollView>
   );
 };
 
