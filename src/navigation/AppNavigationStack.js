@@ -114,7 +114,10 @@ function AppNavigationStack({navigation}) {
         options={{
           title: 'My Service Request', 
           headerTintColor: colors.white, 
-          headerRight: () => <LogoutButton />,  
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>,  
           headerStyle: {backgroundColor: colors.colorPrimary}
         }} 
       />     

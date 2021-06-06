@@ -15,10 +15,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import TextField from '../component/TextField';
 import Constants from '../Constants/constants.json';
 import PickerSelector from '../component/Picker';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {signUpAction} from '../redux/actions/signUpAction';
 
 const SignUpScreen = ({navigation, route}) => {
+  const usersSigned = useSelector((state) => state.SignUpReducer.users)
 
   const {type} = route.params;
   console.log('Value:',type)
@@ -34,7 +35,8 @@ const SignUpScreen = ({navigation, route}) => {
         Name: userName, 
         password: password, 
         phone: phone,
-        type: type
+        type: type,
+        userId: usersSigned.length
       }
       dispatch(signUpAction(userInfo));
       navigation.push(Constants.screen.Login);

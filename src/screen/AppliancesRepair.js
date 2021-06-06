@@ -37,7 +37,7 @@ const AppliancesRepair = ({navigation}) => {
         <CategoryCard
           imageSource={item.image}
           title={item.service}
-          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest, {type: item.service})}
         />
         
       </View>

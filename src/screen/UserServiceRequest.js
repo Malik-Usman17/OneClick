@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, FlatList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, FlatList, ScrollView, ToastAndroid } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from '../Constants/constants.json';
+import {useDispatch, useSelector} from 'react-redux';
+import {userOrderAction} from '../redux/actions/userOrderAction';
+import {currentUserAction} from '../redux/actions/currentUserAction';
+import { CommonActions } from '@react-navigation/native';
 
 import { colors } from '../Constants/colors'
 
@@ -51,16 +55,47 @@ const timeSlots = [
 ]
 
 
-const UserServiceRequest = ({navigation}) => {
+const UserServiceRequest = ({navigation, route}) => {
+
+    const totalOrders = useSelector((state) => state.userOrderReducer.orders)
+    const currentUser = useSelector((state) => state.currentUser.currentUser);
+    console.log('Current User:',currentUser)
+    
+
+    console.log('Total Orders:',totalOrders)
+
+    const dispatch = useDispatch();
+
+    const {type} = route.params;
+    console.log("Order Type:",type)
 
     const [activeDate, setActiveDate] = useState(null);
     const [activeTime, setActiveTime] = useState(null);
+
+    const [area, setArea] = useState('');
+    const [name, setName] = useState('');
+    // const [date, setDate] = useState('');
+    // const [time, setTime] = useState('');
 
     function selectDate(index) {
         setActiveDate(index)
     }
     function selectTime(index) {
         setActiveTime(index)
+    }
+
+    function userOrdererd(){
+        const orders = {
+            location: area,
+            clientName: name,
+            date: daysOfMonth[activeDate],
+            time: timeSlots[activeTime],
+            id: totalOrders.length,
+            userId: currentUser.userId 
+        }
+        dispatch(userOrderAction(orders));
+        ToastAndroid.show('Your Order Has Been Sent', ToastAndroid.LONG);
+        navigation.push(Constants.screen.Dashbaord);   
     }
 
     return (
@@ -73,11 +108,21 @@ const UserServiceRequest = ({navigation}) => {
                     </View>
                     <View style={{ marginVertical: 10 }}>
                         <Text style={styles.textinputLabel}>Location/Service Area</Text>
-                        <TextInput style={styles.textInput} placeholder="Enter Area..." />
+                        <TextInput 
+                          style={styles.textInput} 
+                          placeholder="Enter Area..." 
+                          value={area}
+                          onChangeText={setArea}
+                        />
                     </View>
                     <View style={{ marginVertical: 10 }}>
                         <Text style={styles.textinputLabel}>Name</Text>
-                        <TextInput style={styles.textInput} placeholder="Enter Name..." />
+                        <TextInput 
+                          style={styles.textInput} 
+                          placeholder="Enter Name..." 
+                          value={name}
+                          onChangeText={setName}
+                        />
                     </View>
                 </View>
                 <View style={styles.containerView}>
@@ -90,7 +135,11 @@ const UserServiceRequest = ({navigation}) => {
                           horizontal 
                           data={daysOfMonth} 
                           renderItem={({ item, index }) =>
-                            <TouchableOpacity key={index} style={{ ...styles.dateTile, backgroundColor: index === activeDate ? colors.secondaryColor : '#fff', borderColor: index === activeDate ? colors.secondaryColor : colors.primaryBg }} onPress={() => selectDate(index)}>
+                            <TouchableOpacity 
+                              key={index} 
+                              style={{ ...styles.dateTile, backgroundColor: index === activeDate ? colors.secondaryColor : '#fff', borderColor: index === activeDate ? colors.secondaryColor : colors.primaryBg }} 
+                              onPress={() => selectDate(index)}
+                              >
                                 <Text style={{ ...styles.dayOfWeek, color: index === activeDate ? '#fff' : '#707070' }}>{item.day}</Text>
                                 <Text style={{ ...styles.dateNum, color: index === activeDate ? '#fff' : '#000' }}>{item.date}</Text>
                             </TouchableOpacity>}
@@ -121,7 +170,9 @@ const UserServiceRequest = ({navigation}) => {
                 </View>
                 <View>
                     <TouchableOpacity 
-                      style={styles.saveButton}
+                      style={{...styles.saveButton, backgroundColor: name == '' || area == '' || activeDate == null || activeTime == null ? 'gray' : colors.colorPrimary}}
+                      disabled={name == '' || area == '' || activeDate == null || activeTime == null}
+                      onPress={() => userOrdererd()}
                     >
                         <Text style={styles.saveButtonText}>Save</Text>
                     </TouchableOpacity>
