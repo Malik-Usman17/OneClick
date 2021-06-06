@@ -16,9 +16,9 @@ const LoginScreen = ({navigation}) => {
   
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.SignUpReducer.users);
-  console.log(allUsers);
+  console.log('All Users:',allUsers);
 
-  const [passwordHidden, hidePassword] = useState(false);
+  
   const [password, setPassword] = useState('');
   const [user, SetUser] = useState('');
 
@@ -34,7 +34,7 @@ const LoginScreen = ({navigation}) => {
         navigation.push(Constants.screen.TabNavigation);
       }
       else{
-        navigation.push(Constants.screen.SPProfile);
+        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.ServiceProviderTab}]}));
       }
     }
     else{

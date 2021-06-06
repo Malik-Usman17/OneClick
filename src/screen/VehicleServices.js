@@ -4,7 +4,7 @@ import CategoryCard from '../component/CategoryCard';
 import SearchField from '../component/SearchField';
 import { colors } from '../Constants/colors';
 
-const VehicleServices = () => {
+const VehicleServices = ({navigation}) => {
 
   const [search, setSearch] = useState('');
 

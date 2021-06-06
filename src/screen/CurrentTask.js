@@ -2,15 +2,13 @@ import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import { colors } from '../Constants/colors';
 import Constants from '../Constants/constants.json';
+import Header from '../component/Header';
 
 const CurrentTask = ({navigation}) => {
    
     const data=[
        {'name': 'User Name 1', 'task': 'Task Details', 'Time': '3:10', 'Address': 'abc09 street'},
        {'name': 'User Name 2', 'task': 'Task Details', 'Time': '1:10', 'Address': 'abc street'},
-    //    {'name': 'User Name 3', 'task': 'Task Details', 'Time': '5:40', 'Address': 'abcdef street'},
-    //    {'name': 'User Name 4', 'task': 'Task Details', 'Time': '4:10', 'Address': 'abc street'},
-    //    {'name': 'User Name 5', 'task': 'Task Details', 'Time': '9:10', 'Address': '114abc street'}
     ]
 
     const tasks = ({item}) => {
@@ -37,6 +35,8 @@ const CurrentTask = ({navigation}) => {
 
     return(
         <View style={{backgroundColor: colors.primaryBg, flex: 1}}>
+
+            <Header title='Current Tasks'/>
             <FlatList 
               data={data}
               renderItem={tasks}

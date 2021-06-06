@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import { colors } from '../Constants/colors';
 import Constants from '../Constants/constants.json';
+import Header from '../component/Header';
 
 const Leads = ({navigation}) => {
    
@@ -37,11 +38,15 @@ const Leads = ({navigation}) => {
 
     return(
         <View style={{backgroundColor: colors.primaryBg, flex: 1}}>
+            
+            <Header title='Leads'/>
+            
             <FlatList 
               data={data}
               renderItem={tasks}
               keyExtractor={(item, index) => index.toString()}
             />
+            
         </View>
     )
 

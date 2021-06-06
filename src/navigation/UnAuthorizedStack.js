@@ -22,6 +22,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import { CommonActions} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {currentUserAction} from '../redux/actions/currentUserAction';
+import ServiceProviderStack from './ServiceProviderStack';
+import ServiceProviderTab from './ServiceProviderTab';
 
 
 const {Screen, Navigator} = createStackNavigator();
@@ -65,7 +67,10 @@ function UnAuthorizedStack({navigation}) {
         options={{headerShown: false}}
       />
 
-      <Screen 
+      <Screen name={Constants.screen.ServiceProviderStack} component={ServiceProviderStack} options={{headerShown: false}} />
+      <Screen name={Constants.screen.ServiceProviderTab} component={ServiceProviderTab} options={{headerShown: false}} />
+
+      {/* <Screen 
         name={Constants.screen.SPProfile} 
         component={SPProfile} 
         options={{
@@ -109,7 +114,7 @@ function UnAuthorizedStack({navigation}) {
         name={Constants.screen.ServiceProviderLocation} 
         component={ServiceProviderLocation} 
         options={{title: 'My Service Location', headerTintColor: colors.white, headerRight: () => <LogoutButton />,  headerStyle: {backgroundColor: colors.colorPrimary}}} 
-      />
+      /> */}
       
     </Navigator>
   );

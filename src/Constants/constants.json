@@ -23,6 +23,8 @@
       "Quotes": "Quotes",
       "CurrentTask": "CurrentTask",
       "ServiceProviderLocation": "ServiceProviderLocation",
-      "UserServiceRequest": "UserServiceRequest"
+      "UserServiceRequest": "UserServiceRequest",
+      "ServiceProviderStack": "ServiceProviderStack",
+      "ServiceProviderTab": "ServiceProviderTab" 
   }
 }

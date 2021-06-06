@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {
-  View,
+  View, Image,
   Text,
   ImageBackground,
   StyleSheet,
@@ -46,11 +46,12 @@ const SignUpScreen = ({navigation, route}) => {
         source={require('../../assets/loginBg.png')}
         style={styles.bgImage}>
           <ScrollView>
+        
         <View style={styles.heading}>
-          <Text style={styles.headingText}>OneClick</Text>
-          <Text style={styles.headingText}>Services</Text>
+          <Image source={require('../../assets/logo.png')} style={styles.logo}/>
         </View>
-        <Text style={[styles.headingText, {marginLeft: 75}]}>Sign Up</Text>
+
+        <Text style={[styles.headingText, {marginLeft: 60}]}>Sign Up</Text>
 
         <View
           style={{
@@ -148,9 +149,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   heading: {
-    // backgroundColor: 'green',
     alignItems: 'center',
-    marginTop: 120,
+    marginTop: 80,
+    marginBottom: 20
   },
   headingText: {
     fontSize: 25,
@@ -167,14 +168,17 @@ const styles = StyleSheet.create({
   buttonView: {
     marginTop: 25,
     alignItems: 'center',
-    //padding: 5
-    //flexDirection: 'row'
   },
   button: {
     height: Dimensions.get('window').height * 0.07,
     width: Dimensions.get('window').width * 0.35,
     borderRadius: 22,
     flexDirection: 'row',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
   },
 });
 

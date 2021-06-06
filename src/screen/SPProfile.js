@@ -4,8 +4,9 @@ import {colors} from '../Constants/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Constants from '../Constants/constants.json';
 
-const SPProfile = () => {
+const SPProfile = ({navigation}) => {
     return(
         <ScrollView
           style={styles.scroll}
@@ -23,7 +24,10 @@ const SPProfile = () => {
 
             <View style={styles.details}>
                 
-                <TouchableOpacity style={styles.category}>
+                <TouchableOpacity 
+                  style={styles.category}
+                  onPress={() => navigation.push(Constants.screen.ChooseServices)}
+                >
                     <AntDesign name='arrowsalt' size={30}/>
                     <Text style={styles.detailText}>Choose Your Services</Text>
                 </TouchableOpacity>
@@ -33,15 +37,18 @@ const SPProfile = () => {
                     <Text style={styles.detailText}>About Me</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{...styles.category, marginTop: 55}}>
+                <TouchableOpacity 
+                  style={{...styles.category, marginTop: 55}}
+                  onPress={() => navigation.push(Constants.screen.ServiceProviderLocation)}
+                >
                     <Entypo name='location' size={30}/>
                     <Text style={styles.detailText}>My Service Location</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{...styles.category, marginTop: 55, marginBottom: 10}}>
+                {/* <TouchableOpacity style={{...styles.category, marginTop: 55, marginBottom: 10}}>
                     <Feather name='sidebar' size={30}/>
                     <Text style={styles.detailText}>Id Proof</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                
             </View>
 

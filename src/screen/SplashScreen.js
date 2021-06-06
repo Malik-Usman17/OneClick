@@ -1,11 +1,9 @@
-import React, {useEffect} from 'react';
 import { CommonActions } from '@react-navigation/native';
-import {View, Text, Image, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
-import {colors} from '../Constants/colors';
+import React, { useEffect } from 'react';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { colors } from '../Constants/colors';
 import Constants from '../Constants/constants.json';
-import { useTheme } from '@react-navigation/native';
-import {useSelector} from 'react-redux';
-import { ESLint } from 'eslint';
 
 const SplashScreen = ({navigation}) => {
 
@@ -19,7 +17,8 @@ const SplashScreen = ({navigation}) => {
           navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.TabNavigation}]}));
         }
         else{
-          navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.SPProfile}]}));
+          //navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.SPProfile}]}));
+          navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.ServiceProviderTab}]}));
         }
       }
       else{

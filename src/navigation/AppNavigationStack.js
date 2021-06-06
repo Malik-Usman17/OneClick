@@ -16,10 +16,16 @@ import HealthFitness from '../screen/HealthFitness';
 import BeautyServices from '../screen/BeautyServices';
 import {colors} from '../Constants/colors';
 import UserServiceRequest from '../screen/UserServiceRequest';
+import {useDispatch, useSelector} from 'react-redux';
+import {currentUserAction} from '../redux/actions/currentUserAction';
+import { CommonActions } from '@react-navigation/native';
 
 const {Screen, Navigator} = createStackNavigator();
 
-function AppNavigationStack() {
+function AppNavigationStack({navigation}) {
+
+  const dispatch = useDispatch();
+
   return (
     <Navigator initialRouteName={Constants.screen.Dashboard}>
       <Screen 
@@ -27,7 +33,10 @@ function AppNavigationStack() {
          component={Dashboard} 
          options={{
            title: 'Home', 
-           headerRight: () => <LogoutButton />,
+           headerRight: () => <LogoutButton onPress={() => {
+             dispatch(currentUserAction(null));
+             navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}))
+           }}/>,
            headerStyle: {backgroundColor: colors.colorPrimary},
            headerTintColor: colors.white
           }} 

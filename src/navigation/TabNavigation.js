@@ -19,11 +19,15 @@ import AppNavigationStack from './AppNavigationStack';
 import LogoutButton from '../component/LogoutButton';
 
 const TabNavigation = () => {
+  
+  // const currentUser = useSelector((state) => state.currentUser.currentUser);
+  // console.log('Tab Navigation (type):',currentUser);
+
   const Tab = createBottomTabNavigator();
 
   return (
     <Tab.Navigator
-      screenOption={{}}
+      //screenOption={{}}
       initialRouteName={Constants.screen.AppNavigationStack}
       tabBarOptions={{
         activeTintColor: colors.secondaryColor,
