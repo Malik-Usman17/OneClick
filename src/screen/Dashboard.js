@@ -3,8 +3,13 @@ import {View, Text, StyleSheet, Image, Dimensions, ScrollView} from 'react-nativ
 import {colors} from '../Constants/colors';
 import Cards from '../component/Cards';
 import Constants from '../Constants/constants.json';
+import {useSelector} from 'react-redux';
 
 const Dashboard = ({navigation}) => {
+
+  const notification = useSelector((state) => state.userNotification.notice);
+  console.log('Dashboard Note:',notification)
+
   return(
     <ScrollView style={styles.container}>
       <View style={styles.cardCategoryView}>

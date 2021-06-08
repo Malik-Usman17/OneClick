@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {userOrderAction} from '../redux/actions/userOrderAction';
 import {currentUserAction} from '../redux/actions/currentUserAction';
 import { CommonActions } from '@react-navigation/native';
+import {NotificationAction} from '../redux/actions/NotificationAction';
+import moment from 'moment';
 
 import { colors } from '../Constants/colors'
 
@@ -59,7 +61,7 @@ const UserServiceRequest = ({navigation, route}) => {
 
     const totalOrders = useSelector((state) => state.userOrderReducer.orders)
     const currentUser = useSelector((state) => state.currentUser.currentUser);
-    // console.log('Current User:',currentUser)
+    const notification = useSelector((state) => state.userNotification.notice);
     
 
     console.log('Total Orders:',totalOrders)
@@ -94,8 +96,21 @@ const UserServiceRequest = ({navigation, route}) => {
         }
         dispatch(userOrderAction(orders));
         ToastAndroid.show('Your Order Has Been Sent',ToastAndroid.LONG);
-        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Dashboard}]}))
-        //navigation.push(Constants.screen.Dashboard);   
+        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Dashboard}]})) 
+    }
+
+    function notifications(){
+        
+        const notices = {
+            userType: currentUser.type,
+            id: notification.length,
+            title: type,
+            details: 'You Have requested the '+type+' service.',
+            subText: area,
+            date: moment(new Date()).format('DD/MM/YYYY hh:mm a')
+        }
+        console.log('NOTICES:',notices);
+        dispatch(NotificationAction(notices));
     }
 
     return (
@@ -172,7 +187,11 @@ const UserServiceRequest = ({navigation, route}) => {
                     <TouchableOpacity 
                       style={{...styles.saveButton, backgroundColor: name == '' || area == '' || activeDate == null || activeTime == null ? 'gray' : colors.colorPrimary}}
                       disabled={name == '' || area == '' || activeDate == null || activeTime == null}
-                      onPress={() => userOrdererd()}
+                      onPress={() => {
+                        notifications()
+                          userOrdererd()
+                          
+                        }}
                     >
                         <Text style={styles.saveButtonText}>Save</Text>
                     </TouchableOpacity>
