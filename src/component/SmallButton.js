@@ -8,7 +8,7 @@ const SmallButton = ({title, onPress}) => {
           style={styles.button}
           onPress={onPress}
         >
-          <Text style={{fontWeight: 'bold'}}>{title}</Text>
+          <Text style={{fontWeight: 'bold', color: colors.white, fontSize: 18}}>{title}</Text>
 
         </TouchableOpacity>
     )
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     button:{
         borderRadius: 8,
         elevation: 15,
-        backgroundColor: colors.colorPrimary,
+        backgroundColor: colors.secondaryColor,
         width: Dimensions.get('window').width * 0.33,
         height: Dimensions.get('window').height * 0.048,
         alignItems: 'center',

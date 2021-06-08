@@ -1,24 +1,19 @@
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { CommonActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import LoginScreen from '../screen/LoginScreen';
-import Constants from '../Constants/constants.json';
-import SignUpScreen from '../screen/SignUpScreen';
-import Intro from '../screen/Intro';
-import Dashboard from '../screen/Dashboard';
-import TabNavigation from './TabNavigation';
-import AppliancesRepair from '../screen/AppliancesRepair';
+import { useDispatch } from 'react-redux';
 import LogoutButton from '../component/LogoutButton';
-import VehicleServices from '../screen/VehicleServices';
-import HomeCleaning from '../screen/HomeCleaning';
+import { colors } from '../Constants/colors';
+import Constants from '../Constants/constants.json';
+import { currentUserAction } from '../redux/actions/currentUserAction';
+import AppliancesRepair from '../screen/AppliancesRepair';
+import BeautyServices from '../screen/BeautyServices';
+import Dashboard from '../screen/Dashboard';
 import EventsWedding from '../screen/EventsWedding';
 import HealthFitness from '../screen/HealthFitness';
-import BeautyServices from '../screen/BeautyServices';
-import {colors} from '../Constants/colors';
+import HomeCleaning from '../screen/HomeCleaning';
 import UserServiceRequest from '../screen/UserServiceRequest';
-import {useDispatch, useSelector} from 'react-redux';
-import {currentUserAction} from '../redux/actions/currentUserAction';
-import { CommonActions } from '@react-navigation/native';
+import VehicleServices from '../screen/VehicleServices';
 
 const {Screen, Navigator} = createStackNavigator();
 
@@ -48,7 +43,10 @@ function AppNavigationStack({navigation}) {
         options={{
           title: 'Appliances Services', 
           headerTintColor: colors.white, 
-          headerRight: () => <LogoutButton />, 
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>, 
           headerStyle: {backgroundColor: colors.colorPrimary}
         }}
       />
@@ -59,7 +57,10 @@ function AppNavigationStack({navigation}) {
         options={{
           title: 'Vehicle Services',
           headerTintColor: colors.white, 
-          headerRight: () => <LogoutButton />,
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>,
           headerStyle: {backgroundColor: colors.colorPrimary}
         }}
       />
@@ -69,7 +70,10 @@ function AppNavigationStack({navigation}) {
         component={HomeCleaning}
         options={{
           title: 'Cleaning Services',
-          headerRight: () => <LogoutButton />,
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>,
           headerTintColor: colors.white,
           headerStyle: {backgroundColor: colors.colorPrimary}
         }}
@@ -80,7 +84,10 @@ function AppNavigationStack({navigation}) {
         component={EventsWedding} 
         options={{
           title: 'Events Services', 
-          headerRight: () => <LogoutButton />,
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>,
           headerTintColor: colors.white,
           headerStyle: {backgroundColor: colors.colorPrimary}
         }}
@@ -91,7 +98,10 @@ function AppNavigationStack({navigation}) {
         component={HealthFitness} 
         options={{
           title: 'Health Services', 
-          headerRight: () => <LogoutButton />,
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>,
           headerTintColor: colors.white,
           headerStyle: {backgroundColor: colors.colorPrimary}
         }}
@@ -102,7 +112,10 @@ function AppNavigationStack({navigation}) {
         component={BeautyServices} 
         options={{
           title: 'Beauty Services', 
-          headerRight: () => <LogoutButton />,
+          headerRight: () => <LogoutButton onPress={() => {
+            dispatch(currentUserAction(null));
+            navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+          }}/>,
           headerTintColor: colors.white,
           headerStyle: {backgroundColor: colors.colorPrimary}
         }}

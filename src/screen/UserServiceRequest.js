@@ -59,7 +59,7 @@ const UserServiceRequest = ({navigation, route}) => {
 
     const totalOrders = useSelector((state) => state.userOrderReducer.orders)
     const currentUser = useSelector((state) => state.currentUser.currentUser);
-    console.log('Current User:',currentUser)
+    // console.log('Current User:',currentUser)
     
 
     console.log('Total Orders:',totalOrders)
@@ -74,8 +74,7 @@ const UserServiceRequest = ({navigation, route}) => {
 
     const [area, setArea] = useState('');
     const [name, setName] = useState('');
-    // const [date, setDate] = useState('');
-    // const [time, setTime] = useState('');
+
 
     function selectDate(index) {
         setActiveDate(index)
@@ -94,8 +93,9 @@ const UserServiceRequest = ({navigation, route}) => {
             userId: currentUser.userId 
         }
         dispatch(userOrderAction(orders));
-        ToastAndroid.show('Your Order Has Been Sent', ToastAndroid.LONG);
-        navigation.push(Constants.screen.Dashbaord);   
+        ToastAndroid.show('Your Order Has Been Sent',ToastAndroid.LONG);
+        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Dashboard}]}))
+        //navigation.push(Constants.screen.Dashboard);   
     }
 
     return (
@@ -207,7 +207,6 @@ const styles = StyleSheet.create({
     },
     textinputLabel: {
         color: colors.colorPrimary,
-        //color: '#707070',
         marginLeft: 10
     },
     textInput: {
@@ -241,7 +240,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        // paddingVertical: 15,
         width: 150,
         height: 40,
         alignSelf: 'center',

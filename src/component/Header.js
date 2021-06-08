@@ -4,9 +4,10 @@ import {colors} from '../Constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LogoutButton from './LogoutButton';
 import {useNavigation} from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-const Header = ({title}) => {
+const Header = ({title, onPress}) => {
 
     const navigation = useNavigation();
 
@@ -27,7 +28,11 @@ const Header = ({title}) => {
 
             <Text style={styles.heading}>{title}</Text>
 
-            <LogoutButton />
+            <TouchableOpacity style={styles.logout} onPress={onPress}>
+
+              <Ionicons name="log-out-outline" size={30} color={colors.white}/>
+
+            </TouchableOpacity>
 
         </View>
     )
@@ -35,7 +40,6 @@ const Header = ({title}) => {
 
 const styles = StyleSheet.create({
     container:{
-        //alignSelf: 'flex-end'
        flexDirection: 'row',
        alignItems: 'center',
        justifyContent: 'space-between',
@@ -48,7 +52,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: colors.white
-    }
+    },
+    logout: {
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })
 
 export default Header;

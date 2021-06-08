@@ -1,22 +1,15 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-  Dimensions,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
-import {colors} from '../Constants/colors';
+import React from 'react';
+import {Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Button from '../component/Button';
+import { colors } from '../Constants/colors';
 import Constants from '../Constants/constants.json';
 
 const Intro = ({navigation}) => {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={true}>
+    <ScrollView 
+      style={styles.container} 
+      showsVerticalScrollIndicator={true}
+    >
     
     <View style={{marginTop:12, marginLeft: 6}}> 
       <Image source={require('../../assets/logo.png')} style={styles.logo} />
@@ -48,21 +41,26 @@ const Intro = ({navigation}) => {
 
         <Text style={{...styles.labelText, marginTop: 25}}>Sign up As</Text>
 
-        <Button 
-          title="Customer"
-          style={styles.button}
-          buttonTextStyle={{fontSize: 18}}
-          onPress={() => navigation.push(Constants.screen.SignUpScreen, {type: 'user'})}
-        />
+        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', marginTop: 10 }}>
 
-        <Button 
-          title="Service Provider"
-          style={styles.button}
-          buttonTextStyle={{fontSize: 18}}
-          onPress={() => navigation.push(Constants.screen.SignUpScreen , {type: 'provider'})}
-        />
+          <Button
+            title="Customer"
+            style={styles.signUpButton}
+            buttonTextStyle={{ fontSize: 18 }}
+            onPress={() => navigation.push(Constants.screen.SignUpScreen, { type: 'user' })}
+          />
+
+          <Button
+            title="Service Provider"
+            style={styles.signUpButton}
+            buttonTextStyle={{ fontSize: 18 }}
+            onPress={() => navigation.push(Constants.screen.SignUpScreen, { type: 'provider' })}
+          />
+
+        </View>
 
       </View>
+
     </ScrollView>
   );
 };
@@ -70,7 +68,7 @@ const Intro = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primaryBg,
+    backgroundColor: colors.white,
   },
   logo: {
     width: 80,
@@ -83,11 +81,8 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   imageView: {
-    // backgroundColor: colors.primaryBg,
-    //backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
-    // flex: 0.4
   },
   image: {
     width: Dimensions.get('screen').width,
@@ -103,7 +98,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: Dimensions.get('window').height * 0.055,
-    width: Dimensions.get('window').width * 0.5,
+    width: Dimensions.get('window').width * 0.45,
     borderRadius: 7,
     elevation: 1,
     marginTop: 12
@@ -111,23 +106,24 @@ const styles = StyleSheet.create({
   buttonsView: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    // marginTop: 15,
-    // backgroundColor: 'green',
     padding: 10,
   },
   labelText: {
-    //marginTop: 10,
     fontSize: 18,
     textAlign: 'center',
     fontWeight: 'bold',
   },
   userSectionView: {
-    //backgroundColor: '#f2f2f2',
     margin: 15,
     borderRadius: 7,
-    //paddingVertical: 10,
     alignItems: 'center'
   },
+  signUpButton:{
+    height: Dimensions.get('window').height * 0.055,
+    width: Dimensions.get('window').width * 0.42,
+    borderRadius: 7,
+    elevation: 1,
+  }
 });
 
 export default Intro;

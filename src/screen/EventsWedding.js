@@ -3,8 +3,9 @@ import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
 import { colors } from '../Constants/colors';
 import SearchField from '../component/SearchField';
 import CategoryCard from '../component/CategoryCard';
+import Constants from '../Constants/constants.json'; 
 
-const EventsWedding = () =>{
+const EventsWedding = ({navigation}) =>{
 
   const [search, setSearch] = useState('');
 
@@ -31,7 +32,7 @@ const EventsWedding = () =>{
         <CategoryCard
           imageSource={item.image}
           title={item.service}
-          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest, {type: item.service})}
         />
         
       </View>

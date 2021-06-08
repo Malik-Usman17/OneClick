@@ -5,8 +5,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Constants from '../Constants/constants.json';
+import {useDispatch, useSelector} from 'react-redux';
 
 const SPProfile = ({navigation}) => {
+
+    const currentUser = useSelector((state) => state.currentUser.currentUser);
+    //console.log('SP Profile Screen:',currentUser);
+
     return(
         <ScrollView
           style={styles.scroll}
@@ -15,9 +20,8 @@ const SPProfile = ({navigation}) => {
                 <Image source={require('../../assets/User.png')} style={styles.image}/>
 
                 <View style={styles.user}>
-                    <Text style={{fontSize: 18, fontWeight: 'bold'}}>UserName</Text>
-                    <Text>user@mail.com</Text>
-                    <Text>+923132123456</Text>
+                    <Text style={{fontSize: 18, fontWeight: 'bold'}}>{currentUser?.Name}</Text>
+                    <Text>{currentUser?.phone}</Text>
                 </View>
 
             </View>
@@ -28,12 +32,12 @@ const SPProfile = ({navigation}) => {
                   style={styles.category}
                   onPress={() => navigation.push(Constants.screen.ChooseServices)}
                 >
-                    <AntDesign name='arrowsalt' size={30}/>
+                    <AntDesign name='arrowsalt' size={30} color={colors.secondaryColor}/>
                     <Text style={styles.detailText}>Choose Your Services</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={{...styles.category, marginTop: 55}}>
-                    <Feather name='book-open' size={30}/>
+                    <Feather name='book-open' size={30} color={colors.secondaryColor}/>
                     <Text style={styles.detailText}>About Me</Text>
                 </TouchableOpacity>
 
@@ -41,15 +45,10 @@ const SPProfile = ({navigation}) => {
                   style={{...styles.category, marginTop: 55}}
                   onPress={() => navigation.push(Constants.screen.ServiceProviderLocation)}
                 >
-                    <Entypo name='location' size={30}/>
+                    <Entypo name='location' size={30} color={colors.secondaryColor}/>
                     <Text style={styles.detailText}>My Service Location</Text>
                 </TouchableOpacity>
 
-                {/* <TouchableOpacity style={{...styles.category, marginTop: 55, marginBottom: 10}}>
-                    <Feather name='sidebar' size={30}/>
-                    <Text style={styles.detailText}>Id Proof</Text>
-                </TouchableOpacity> */}
-               
             </View>
 
             <TouchableOpacity style={styles.connect}>
@@ -77,11 +76,11 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        borderColor: 'green',
-        borderWidth: 2,
-        resizeMode: 'contain',
+        borderColor: colors.secondaryColor,
+        borderWidth: 1,
+        //resizeMode: 'contain',
         marginLeft: 10,
-        overflow: 'hidden'  
+        //overflow: 'hidden'  
     },
     user:{
         marginTop: 5,

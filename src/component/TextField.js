@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TextInput,StyleSheet, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const TextField = ({ fieldTitle, iconName, label, value, onChangeText, keyboardType}) => {
+const TextField = ({ fieldTitle, iconName, label, value, onChangeText, keyboardType, autoCapitalize}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.infoTitle}>{fieldTitle}</Text>
@@ -21,6 +21,7 @@ const TextField = ({ fieldTitle, iconName, label, value, onChangeText, keyboardT
           placeholder={label}
           value={value}
           onChangeText={onChangeText}
+          autoCapitalize={autoCapitalize}
         />
 
       </View>

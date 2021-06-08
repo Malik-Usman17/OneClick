@@ -7,6 +7,8 @@ import Constants from '../Constants/constants.json';
 import CurrentTask from '../screen/CurrentTask';
 import Leads from '../screen/Leads';
 import ServiceProviderStack from './ServiceProviderStack';
+import SPNotification from '../screen/SPNotification';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ServiceProviderTab = () => {
   
@@ -46,22 +48,16 @@ const ServiceProviderTab = () => {
         }}
       />
 
-      {/* <Tab.Screen
-        name={Constants.screen.Notification}
-        component={Notification}
+      <Tab.Screen
+        name={Constants.screen.SPNotification}
+        component={SPNotification}
         options={{
-          tabBarBadge: 5,
-          tabBarBadgeStyle: {
-            backgroundColor: colors.colorPrimary,
-            color: colors.primaryBg,
-            fontSize: 14,
-          },
           tabBarLabel: 'Notification',
           tabBarIcon: ({color}) => (
             <Ionicons name="notifications-outline" color={color} size={26} />
           ),
         }}
-      /> */}
+      />
 
       <Tab.Screen
         name={Constants.screen.Leads}

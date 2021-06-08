@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import CategoryCard from '../component/CategoryCard';
 import SearchField from '../component/SearchField';
 import { colors } from '../Constants/colors';
+import Constants from '../Constants/constants.json';
 
 const VehicleServices = ({navigation}) => {
 
@@ -32,7 +33,7 @@ const VehicleServices = ({navigation}) => {
         <CategoryCard
           imageSource={item.image}
           title={item.service}
-          onPress={() => navigation.push(Constants.screen.UserServiceRequest)}
+          onPress={() => navigation.push(Constants.screen.UserServiceRequest, {type: item.service})}
         />
 
       </View>

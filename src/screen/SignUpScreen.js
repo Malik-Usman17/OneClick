@@ -55,13 +55,10 @@ const SignUpScreen = ({navigation, route}) => {
 
         <Text style={[styles.headingText, {marginLeft: 60}]}>Sign Up</Text>
 
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 25,
-          }}>
+        <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 25}}>
+          
           <View style={styles.infoInnerContainer}>
+            
             <TextField
               fieldTitle="Username"
               iconName="user-o"
@@ -69,12 +66,6 @@ const SignUpScreen = ({navigation, route}) => {
               value={userName}
               onChangeText={(val) => setUserName(val)}
             />
-
-            {/* <TextField
-              fieldTitle="Email Address"
-              iconName="id-card"
-              label="Email Address"
-            /> */}
 
             <TextField 
               fieldTitle="Password" 
@@ -93,17 +84,6 @@ const SignUpScreen = ({navigation, route}) => {
               onChangeText={(val) => setPhone(val)}
             />
 
-            {/* <View>
-              <PickerSelector
-                fieldTitle="Service"
-                items={[
-                  {name: 'Salon', value: 'salon'},
-                  {name: 'Electrician', value: 'electrician'},
-                  {name: 'Plumber', value: 'plumber'},
-                  {name: 'Hairdresser', value: 'hairdresser'},
-                ]}
-              />
-            </View> */}
           </View>
 
           <View style={styles.buttonView}>
@@ -156,9 +136,9 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   headingText: {
-    fontSize: 25,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: colors.white,
+    color: colors.colorPrimary,
   },
   infoInnerContainer: {
     backgroundColor: colors.white,

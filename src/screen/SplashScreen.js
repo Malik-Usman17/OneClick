@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primaryBg
+    backgroundColor: colors.white
   },
   logo:{
     height: Dimensions.get('window').height * 0.43,

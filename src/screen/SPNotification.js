@@ -4,52 +4,45 @@ import { colors } from '../Constants/colors';
 import Constants from '../Constants/constants.json';
 import Header from '../component/Header';
 
-const Leads = ({navigation, route}) => {
-
-    // const {type} = route.params;
-    // console.log('Type:',type)
+const SPNotification = ({navigation}) => {
    
     const data=[
-       {'name': 'User Name 1', 'task': 'Task Details', 'Time': '3:10', 'Address': 'abc09 street'},
-       {'name': 'User Name 2', 'task': 'Task Details', 'Time': '1:10', 'Address': 'abc street'},
-       {'name': 'User Name 3', 'task': 'Task Details', 'Time': '5:40', 'Address': 'abcdef street'},
-       {'name': 'User Name 4', 'task': 'Task Details', 'Time': '4:10', 'Address': 'abc street'},
-       {'name': 'User Name 5', 'task': 'Task Details', 'Time': '9:10', 'Address': '114abc street'}
+       {title: 'Job Name', task: 'Task Details', Time: '3:10', message: 'This job has a new message'},
+       {title: 'Job Name', task: 'Task Details', Time: '1:10', message: 'This job has a new message'},
+       {title: 'Job Name', task: 'Task Details', Time: '5:40', message: 'This job has a new message'},
     ]
 
     const tasks = ({item}) => {
         return(
-            <TouchableOpacity 
+            <View 
               style={styles.container}
-              onPress={() => navigation.push(Constants.screen.LeadRequirement)}
             >
                 <View style={styles.innerContainer}>
                     <View>
-                        <Text style={{color: colors.colorPrimary, fontSize: 20, fontWeight: 'bold'}}>{item.name}</Text>
+                        <Text style={{color: colors.colorPrimary, fontSize: 20, fontWeight: 'bold'}}>{item.title}</Text>
                         <Text>{item.task}</Text>
                     </View>
     
                     <View>
-                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>{item.Time}</Text>
+                        <Text style={{fontSize: 17, fontWeight: 'bold'}}>{item.Time}</Text>
                     </View>
                 </View>
     
-                <Text style={{padding: 10}}>{item.Address}</Text>
-            </TouchableOpacity>
+                <Text style={{padding: 10}}>{item.message}</Text>
+            </View>
         )
     }
 
     return(
         <View style={{backgroundColor: colors.primaryBg, flex: 1}}>
-            
-            {/* <Header title='Leads'/> */}
-            
+
+            <Header title='Notifications' />
+
             <FlatList 
               data={data}
               renderItem={tasks}
               keyExtractor={(item, index) => index.toString()}
             />
-            
         </View>
     )
 
@@ -71,4 +64,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Leads;
+export default SPNotification;

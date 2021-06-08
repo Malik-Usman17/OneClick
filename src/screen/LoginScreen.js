@@ -1,16 +1,12 @@
-import React, {useState} from 'react';
-import {Alert, View, Text, StyleSheet, ScrollView, Dimensions, TextInput, TouchableOpacity, ImageBackground, Image} from 'react-native';
-import {colors} from '../Constants/colors';
-import Eyeicon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Lock from 'react-native-vector-icons/Fontisto';
-import Button from '../component/Button';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import TextField from '../component/TextField';
-import Constants from '../Constants/constants.json';
-import {useDispatch, useSelector} from 'react-redux';
-import {currentUserAction} from '../redux/actions/currentUserAction';
 import { CommonActions } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Alert, Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../component/Button';
+import TextField from '../component/TextField';
+import { colors } from '../Constants/colors';
+import Constants from '../Constants/constants.json';
+import { currentUserAction } from '../redux/actions/currentUserAction';
 
 const LoginScreen = ({navigation}) => {
   
@@ -31,10 +27,14 @@ const LoginScreen = ({navigation}) => {
     if(currentUser !== undefined){
       dispatch(currentUserAction(currentUser));
       if(currentUser.type == 'user'){
-        navigation.push(Constants.screen.TabNavigation);
+        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.TabNavigation}]}));
+        SetUser('');
+        setPassword('');
       }
       else{
         navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.ServiceProviderTab}]}));
+        SetUser('');
+        setPassword('');
       }
     }
     else{
@@ -50,12 +50,11 @@ const LoginScreen = ({navigation}) => {
   }
   
   return(
-    <View style={{flex: 1}}>
-
       <ImageBackground
         style={{flex: 1, resizeMode: 'contain'}}
         source={require('../../assets/login.png')}
       >
+        <ScrollView style={{flex: 1}}>
 
         <View style={{alignItems: 'center', marginTop: 50}}>
           <Image source={require('../../assets/logo.png')} style={styles.logo} />
@@ -77,12 +76,14 @@ const LoginScreen = ({navigation}) => {
               iconName='user-o'
               value={user}
               onChangeText={SetUser}
+              autoCapitalize='none'
             />
 
             <TextField 
               fieldTitle='Password'
               label='Password'
               iconName='lock'
+              autoCapitalize='none'
               value={password}
               onChangeText={setPassword}
             />
@@ -115,23 +116,20 @@ const LoginScreen = ({navigation}) => {
           </View>
 
         </View>
+        </ScrollView>
       </ImageBackground>
-
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   heading:{
-    //backgroundColor: 'green',
-    //alignItems: 'center',
-    marginTop: 20
+    marginTop: 30
   },
   headingText:{
     paddingLeft: 55,
     fontSize: 30,
     fontWeight: 'bold',
-    color: colors.white
+    color: colors.colorPrimary
   },
   infoInnerContainer:{
     backgroundColor: colors.white,
@@ -145,115 +143,16 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 270,
     borderRadius: 22,
     flexDirection: 'row',
-    //marginHorizontal: 10
-    //justifyContent: 'space-evenly'
   },
   buttonView:{
     marginTop: 25,
     alignItems: 'center',
-    //padding: 5
-    //flexDirection: 'row'
   },
   logo: {
     width: 100,
     height: 100,
     resizeMode: 'contain',
   },
-//   scroll:{
-//     backgroundColor: 'pink',
-//     padding: 12,
-//     flex: 1
-//   },
-//   loginView:{
-//     //backgroundColor: 'green',
-//     marginTop: 150,
-//     marginLeft: 6
-//   },
-//   loginText:{
-//     fontSize: 30,
-//     fontWeight: 'bold',
-//     color: colors.white
-//   },
-//   paasFieldView:{
-//     flexDirection: 'row', 
-//     alignItems: 'center', 
-//     justifyContent: 'center', 
-//     marginTop: 5
-// },
-// inputFieldStyle:{
-//   //backgroundColor: 'blue',
-//   width: Dimensions.get('window').width * 0.85,
-//   height: Dimensions.get('window').height * 0.07,
-//   //borderWidth: 1.5,
-//   borderColor: 'gray',
-//   //borderRadius: 20,
-//   paddingLeft: 15,
-// },
-// titleStyle:{
-//   paddingLeft: 13,
-//   fontWeight: 'bold',
-//   fontSize: 15,
-//   color: 'black'
-// },
-// passIconView: {
-//   position: 'absolute', 
-//   right: 15, 
-//   bottom: 11 
-// },
-// text:{
-//   color: colors.gray,
-//   fontWeight: 'bold',
-//   fontSize: 15,
-//   marginTop: 15
-// },
-// line:{
-//   height: Dimensions.get('window').height * 0.002,
-//   backgroundColor: colors.white,
-//   marginTop: 7
-// },
-// shortLine:{
-//   height: Dimensions.get('window').height * 0.002,
-//   width: Dimensions.get('window').width * 0.3,
-//   backgroundColor: 'blue',
-// },
-// lock:{
-//   position: 'absolute',
-//   left: 10,
-//   bottom: 12 
-// },
-// emailView:{
-//   flexDirection: 'row',
-//   marginTop: 50,
-//   paddingLeft: 12,
-//   justifyContent: 'center',
-//   alignItems: 'center'
-// },
-// PasswordView:{
-//   flexDirection: 'row',
-//   marginTop: 20,
-//   paddingLeft: 12,
-//   alignItems: 'center'
-// },
-// PasswordField:{
-//   width: Dimensions.get('window').width * 0.75,
-//   height: Dimensions.get('window').height * 0.07,
-//   borderColor: 'gray',
-//   paddingLeft: 15,
-// },
-
-// signUpView:{
-//   marginTop: 20,
-//   flexDirection: 'row',
-//   // backgroundColor: 'green',
-//   justifyContent: 'center',
-//   alignItems: 'center'
-// },
-// or:{
-//   marginRight: 15, 
-//   marginLeft: 15,
-//   color: colors.white,
-//   fontWeight: 'bold'
-// }
 });
 
 export default LoginScreen;

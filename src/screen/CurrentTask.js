@@ -3,8 +3,12 @@ import { Text, View, FlatList, StyleSheet, TouchableOpacity} from 'react-native'
 import { colors } from '../Constants/colors';
 import Constants from '../Constants/constants.json';
 import Header from '../component/Header';
+import { currentUserAction } from '../redux/actions/currentUserAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CurrentTask = ({navigation}) => {
+
+    const dispatch = useDispatch();
    
     const data=[
        {'name': 'User Name 1', 'task': 'Task Details', 'Time': '3:10', 'Address': 'abc09 street'},
@@ -36,12 +40,18 @@ const CurrentTask = ({navigation}) => {
     return(
         <View style={{backgroundColor: colors.primaryBg, flex: 1}}>
 
-            <Header title='Current Tasks'/>
+            <Header title='Current Tasks' onPress={() => {
+                dispatch(currentUserAction(null));
+                navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+            }}
+            />
+
             <FlatList 
               data={data}
               renderItem={tasks}
               keyExtractor={(item, index) => index.toString()}
             />
+
         </View>
     )
 

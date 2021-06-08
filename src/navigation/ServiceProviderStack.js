@@ -18,6 +18,7 @@ const { Screen, Navigator } = createStackNavigator();
 
 const ServiceProviderStack = ({navigation}) => {
     const dispatch = useDispatch();
+    
     return (
         <Navigator initialRouteName={Constants.screen.SPProfile}>
 
@@ -40,7 +41,10 @@ const ServiceProviderStack = ({navigation}) => {
                 component={ChooseServices}
                 options={{
                     title: 'Choose My Services',
-                    headerRight: () => <LogoutButton />,
+                    headerRight: () => <LogoutButton onPress={() => {
+                        dispatch(currentUserAction(null));
+                        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+                    }}/>,
                     headerStyle: { backgroundColor: colors.colorPrimary },
                     headerTintColor: colors.white
                 }}
@@ -51,7 +55,10 @@ const ServiceProviderStack = ({navigation}) => {
                 component={ServiceProviderLocation}
                 options={{
                     title: 'My Service Location',
-                    headerRight: () => <LogoutButton />,
+                    headerRight: () => <LogoutButton onPress={() => {
+                        dispatch(currentUserAction(null));
+                        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+                    }}/>,
                     headerStyle: { backgroundColor: colors.colorPrimary },
                     headerTintColor: colors.white
                 }}
@@ -62,7 +69,10 @@ const ServiceProviderStack = ({navigation}) => {
                 component={Leads}
                 options={{
                     title: 'New Leads',
-                    headerRight: () => <LogoutButton />,
+                    headerRight: () => <LogoutButton onPress={() => {
+                        dispatch(currentUserAction(null));
+                        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+                    }}/>,
                     headerStyle: { backgroundColor: colors.colorPrimary },
                     headerTintColor: colors.white
                 }}
@@ -73,7 +83,10 @@ const ServiceProviderStack = ({navigation}) => {
                 component={LeadRequirement}
                 options={{
                     title: 'User Name',
-                    headerRight: () => <LogoutButton />,
+                    headerRight: () => <LogoutButton onPress={() => {
+                        dispatch(currentUserAction(null));
+                        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+                    }}/>,
                     headerStyle: { backgroundColor: colors.colorPrimary },
                     headerTintColor: colors.white
                 }}
@@ -84,22 +97,28 @@ const ServiceProviderStack = ({navigation}) => {
                 component={Quotes}
                 options={{
                     title: 'User Name',
-                    headerRight: () => <LogoutButton />,
+                    headerRight: () => <LogoutButton onPress={() => {
+                        dispatch(currentUserAction(null));
+                        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+                    }}/>,
                     headerStyle: { backgroundColor: colors.colorPrimary },
                     headerTintColor: colors.white
                 }}
             />
 
-            <Screen
+            {/* <Screen
                 name={Constants.screen.CurrentTask}
                 component={CurrentTask}
                 options={{
                     title: 'Current Tasks',
-                    headerRight: () => <LogoutButton />,
+                    headerRight: () => <LogoutButton onPress={() => {
+                        dispatch(currentUserAction(null));
+                        navigation.dispatch(CommonActions.reset({index:0, routes:[{name: Constants.screen.Intro}]}));
+                    }}/>,
                     headerStyle: { backgroundColor: colors.colorPrimary },
                     headerTintColor: colors.white
                 }}
-            />
+            /> */}
 
         </Navigator>
     )

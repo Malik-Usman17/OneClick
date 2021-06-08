@@ -1,7 +1,7 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet, Dimensions} from 'react-native';
-import {colors} from '../Constants/colors';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { colors } from '../Constants/colors';
 
 function LogoutButton({style, onPress}) {
   return (

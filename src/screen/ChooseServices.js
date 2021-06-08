@@ -3,10 +3,11 @@ import {TouchableOpacity, View, Text, StyleSheet, TextInput, ScrollView, Dimensi
 import Feather from 'react-native-vector-icons/Feather';
 import { colors } from '../Constants/colors';
 import RadioForm from 'react-native-radio-form';
-//import { TouchableOpacity } from 'react-native-gesture-handler';
+import Constants from '../Constants/constants.json';
 
 
-const ChooseServices = () => {
+
+const ChooseServices = ({navigation}) => {
 
     const [radioButton, setRadioButton] = useState(null);
 
@@ -23,7 +24,9 @@ const ChooseServices = () => {
 
     const itemList = ({item}) => {
         return(
-            <TouchableOpacity style={styles.cardContainer}>
+            <TouchableOpacity 
+              style={styles.cardContainer}
+              onPress={() => navigation.push(Constants.screen.Leads, {type: item.services})}>
                 <Text style={styles.serviceText}>{item.services}</Text>
             </TouchableOpacity>
         )
